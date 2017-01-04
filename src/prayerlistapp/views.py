@@ -3,8 +3,17 @@ from django.template import Template, Context
 from django.http import HttpResponse
 import datetime
 
+from . import models
+
 def index(request):
-	return HttpResponse("Hello world!")
+	prs = models.PrayerRequest.objects.all()
+	return render(
+		request, 
+		'index.html',
+		{
+			'prayer_requests': prs,
+		}
+	)
 
 def current_datetime(request):
 	now = datetime.datetime.now()
