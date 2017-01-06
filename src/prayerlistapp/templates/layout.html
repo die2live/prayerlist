@@ -37,11 +37,18 @@
             <li class="active"><a href="/">Home</a></li>
             <li><a href="#about">About</a></li>            
           </ul>
+          <ul class="nav navbar-nav navbar-right">            
+            <li><a href="settings">Settings</a></li>            
+          </ul>
+          <form class="navbar-right navbar-form">
+            <a href="/login" class="btn btn-success">Sign in</a>
+          </form>
         </div><!--/.nav-collapse -->
       </div>
     </nav>    
 
     <div class="container">
+      <div class="jumbotron">  <div class="container">  </div></div>
 
       {% block content %}{% endblock %}    
 
