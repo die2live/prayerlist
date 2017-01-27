@@ -8,6 +8,7 @@ from django.http import HttpResponse
 import datetime
 
 from . import models
+from . import forms
 from social.apps.django_app.default.models import UserSocialAuth
 
 @login_required
@@ -20,6 +21,19 @@ def index(request):
 			'prayer_requests': prs,
 		}
 	)
+
+@login_required
+def create(request):
+    if request.method == 'GET':
+        form = forms.EditPrayerRequestForm()
+        return render(request, 'create.html', {'form': form})
+    elif request.method == 'POST':
+        form = forms.EditPrayerRequestForm(request.POST)
+        if form.is_valid():
+            pr = form.save()
+            return redirect('index')
+        else:
+            return render(request, 'create.html', {'form': form})        
 
 @login_required
 def settings(request):
@@ -68,9 +82,3 @@ def password(request):
     else:
         form = PasswordForm(request.user)
     return render(request, 'core/password.html', {'form': form})
-
-def current_datetime(request):
-	now = datetime.datetime.now()
-	t = Template('<html><body>It is now {{ current_date }}. </body></html>')
-	html = t.render(Context({'current_date' : now}))
-	return HttpResponse(html)

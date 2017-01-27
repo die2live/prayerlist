@@ -1,20 +1,18 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-
-
-    <!-- Example row of columns -->
-      <div class="row">
-        <div class="col-md-12">
-          <h2>List</h2>
-          <ul>
-			{% for pr in prayer_requests %}
-				<li>{{ pr.title }}</li>
-			{% endfor %}
-		  </ul>
-		  <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div>        
-      </div>
+  <!-- Example row of columns -->
+  <div class="row">
+    <div class="col-md-12">
+      <h2>List</h2>
+      <ul>
+        {% for pr in prayer_requests %}
+          <li>{{ pr.title }}</li>
+        {% endfor %}
+      </ul>      
+      <p><a class="btn btn-primary" href="/prayer/create/" role="button">Add RP &raquo;</a></p>
+    </div>        
+  </div>
 
 
 
