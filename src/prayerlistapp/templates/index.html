@@ -4,18 +4,27 @@
   <!-- Example row of columns -->
   <div class="row">
     <div class="col-md-12">
-      <h2>List</h2>
-      <ul>
+      <div class="grid">
         {% for pr in prayer_requests %}
-          <li>{{ pr.title }}</li>
-        {% endfor %}
-      </ul>      
+          <div class="grid-item">{{ pr.title }}</div>          
+        {% endfor %}        
+      </div>      
       <p><a class="btn btn-primary" href="/prayer/create/" role="button">Add RP &raquo;</a></p>
     </div>        
   </div>
 
+{% endblock %}
 
+{% block scripts %}
+  <script type="text/javascript">
+    $(document).ready(function () {
+      
+      $('.grid').masonry({
+        itemSelector: '.grid-item',
+        columnWidth: 200,
+        percentPosition: true        
+      });
 
-
-
+    });
+  </script>
 {% endblock %}
