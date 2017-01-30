@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AdminPasswordChangeForm, PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib import messages
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.template import Template, Context
 from django.http import HttpResponse
 import datetime
@@ -23,9 +23,19 @@ def index(request):
 	)
 
 @login_required
-def create(request):
-    if request.method == 'GET':
-        form = forms.EditPrayerRequestForm()
+def edit(request, id):
+    if request.method == 'GET':        
+        print('LOG :: get')
+        print('LOG :: %s' % id)
+        #form = None
+        if id:            
+            print('LOG :: completed form')
+            pr = get_object_or_404(models.PrayerRequest, pk=id)
+            print('LOG :: %s' % pr)
+            form = forms.EditPrayerRequestForm(instance=pr)
+        else:
+            print('LOG :: empty form')
+            form = forms.EditPrayerRequestForm()        
         return render(request, 'create.html', {'form': form})
     elif request.method == 'POST':
         form = forms.EditPrayerRequestForm(request.POST)
