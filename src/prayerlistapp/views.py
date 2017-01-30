@@ -38,11 +38,14 @@ def edit(request, id):
             form = forms.EditPrayerRequestForm()        
         return render(request, 'create.html', {'form': form})
     elif request.method == 'POST':
+        print('LOG :: post')
         form = forms.EditPrayerRequestForm(request.POST)
         if form.is_valid():
+            print('LOG :: form is valid')
             pr = form.save()
             return redirect('index')
         else:
+            print('LOG :: form is NOT valid')
             return render(request, 'create.html', {'form': form})        
 
 @login_required

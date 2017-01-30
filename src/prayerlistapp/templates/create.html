@@ -6,34 +6,34 @@
     <!-- Example row of columns -->
       <div class="row">
         <div class="col-md-6">
+
           <form action="/prayer/edit/" method="POST">
             {% csrf_token %}
             {{ form.non_field_errors}}
+            <input type="hidden" id="{{ form.id.id_for_label }}" name="{{ form.id.html_name }}" value="{{ form.id.value }}">
             <div class="form-group">            
               <label for="{{ form.title.id_for_label }}">{{ form.title.label }}</label>
-              <input type="text" class="form-control" id="{{ form.title.id_for_label }}" name="{{ form.title.html_name }}" placeholder="{{ form.title.label }}">              
-              {{ form.title }}
+              <input type="text" class="form-control" id="{{ form.title.id_for_label }}" name="{{ form.title.html_name }}" placeholder="{{ form.title.label }}" value="{{ form.title.value|default_if_none:'' }}">
               {{ form.title.errors }}
             </div>
             <div class="form-group">
               <label for="{{ form.description.id_for_label }}">{{ form.description.label }}</label>
-              <textarea class="form-control" rows="5" id="{{ form.description.id_for_label }}" name="{{ form.description.html_name }}"></textarea>
-              {{ form.description }}
+              <textarea class="form-control" rows="5" id="{{ form.description.id_for_label }}" name="{{ form.description.html_name }}">{{ form.description.value|default_if_none:'' }}</textarea>
               {{ form.description.errors }}
             </div>
             <div class="checkbox">
               <label>
-                <input type="checkbox" id="{{ form.is_urgent.id_for_label }}" name="{{ form.is_urgent.html_name }}">
+                {{ form.is_urgent }}
                 {{ form.is_urgent.label }}
               </label>              
             </div>
             <div class="checkbox">
               <label>
-                <input type="checkbox" id="{{ form.is_public.id_for_label }}" name="{{ form.is_public.html_name }}">
+                {{ form.is_public }}                
                 {{ form.is_public.label }}
               </label>              
             </div>
-            <p><input type="submit" value="Create" class="btn btn-primary"/></p>
+            <p><input type="submit" value="Update" class="btn btn-primary"/></p>
           </form>               
         </div>        
       </div>
