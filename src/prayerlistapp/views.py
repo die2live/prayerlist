@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.template import Template, Context
 from django.http import HttpResponse
+from django.views.decorators.http import require_POST
 import datetime
 
 from . import models
@@ -23,8 +24,9 @@ def index(request):
 	)
 
 @login_required
-def edit(request, id):
-    if request.method == 'GET':        
+def edit(request, pk):
+    id = pk if pk else request.POST['id']
+    if request.method == 'GET':                
         if id:            
             pr = get_object_or_404(models.PrayerRequest, pk=id)
             form = forms.EditPrayerRequestForm(instance=pr)
@@ -33,7 +35,9 @@ def edit(request, id):
         return render(request, 'create.html', {'form': form, 'pr_id': id})
     elif request.method == 'POST':        
         form = forms.EditPrayerRequestForm(request.POST)
+        print('LOG :: id: %s' % id)
         if form.is_valid():
+            print('LOG :: form valid')
             if id:
                 pr = get_object_or_404(models.PrayerRequest, pk=id)            
                 pr.title = form.cleaned_data['title']
@@ -41,11 +45,23 @@ def edit(request, id):
                 pr.is_urgent = form.cleaned_data['is_urgent']
                 pr.is_public = form.cleaned_data['is_public']
                 pr.save()
+                messages.add_message(request, messages.INFO, 'Your prayer request was updated.')
             else:
                 form.save()                            
+                messages.add_message(request, messages.INFO, 'Your prayer request was saved.')
             return redirect('/prayer/')
-        else:            
+        else:     
+            print('LOG :: form NOT valid')       
             return render(request, 'create.html', {'form': form})        
+
+
+@login_required
+@require_POST
+def delete(request, id):
+    pr = get_object_or_404(models.PrayerRequest, pk=id)
+    pr.delete()
+    messages.add_message(request, messages.INFO, 'Your prayer request was deleted.')
+    return HttpResponse('OK')
 
 @login_required
 def settings(request):

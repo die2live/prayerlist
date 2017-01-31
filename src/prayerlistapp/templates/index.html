@@ -11,12 +11,13 @@
             <p class="pr-description">{{ pr.description }}</p>
             <div class="pr-mng">
               <a class="btn btn-default btn-xs" href="/prayer/edit/{{ pr.id }}/" role="button">Edit</a>
-              <button type="button" class="btn btn-default btn-xs">Delete</button>
+              <button type="button" class="btn btn-default btn-xs deletebtn" data-id="{{ pr.id }}">Delete</button>
             </div>
           </div>          
         {% endfor %}        
       </div>      
       <p><a class="btn btn-primary" href="/prayer/edit/" role="button">Add RP &raquo;</a></p>
+      {% csrf_token %}
     </div>        
   </div>
 
@@ -30,6 +31,18 @@
         itemSelector: '.grid-item',
         columnWidth: 310,
         percentPosition: true        
+      });
+
+      $('.deletebtn').click(function() {
+        if(confirm('Are you sure?')) {
+          var id = $(this).data('id');                  
+          $.post(
+            '/prayer/delete/' + id + '/', 
+            {'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()},
+            function(data) {
+              window.location = '/prayer/';
+            } );
+        } 
       });
 
     });

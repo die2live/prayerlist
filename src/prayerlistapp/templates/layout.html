@@ -82,7 +82,17 @@
     </nav>    
 
     <div class="container">
-      <div class="jumbotron">  <div class="container">  </div></div>
+      <div class="jumbotron"><div class="container"></div></div>
+
+      <div class="row">
+        <div class="col-md-12">      
+        {% if messages %}                
+          {% for message in messages %}
+          <p {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>          
+          {% endfor %}        
+        {% endif %}
+        </div>
+      </div>
 
       {% block content %}{% endblock %}    
 

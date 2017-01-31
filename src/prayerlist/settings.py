@@ -130,6 +130,15 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# Messages settings
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.SUCCESS: 'bg-success',
+    messages.WARNING: 'bg-warning',
+    messages.ERROR: 'bg-danger',
+    messages.INFO: 'bg-info'
+}
+
 
 # Social authentication params
 
