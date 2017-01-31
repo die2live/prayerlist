@@ -25,27 +25,26 @@ def index(request):
 @login_required
 def edit(request, id):
     if request.method == 'GET':        
-        print('LOG :: get')
-        print('LOG :: %s' % id)
-        #form = None
         if id:            
-            print('LOG :: completed form')
             pr = get_object_or_404(models.PrayerRequest, pk=id)
-            print('LOG :: %s' % pr)
             form = forms.EditPrayerRequestForm(instance=pr)
         else:
-            print('LOG :: empty form')
             form = forms.EditPrayerRequestForm()        
-        return render(request, 'create.html', {'form': form})
-    elif request.method == 'POST':
-        print('LOG :: post')
+        return render(request, 'create.html', {'form': form, 'pr_id': id})
+    elif request.method == 'POST':        
         form = forms.EditPrayerRequestForm(request.POST)
         if form.is_valid():
-            print('LOG :: form is valid')
-            pr = form.save()
-            return redirect('index')
-        else:
-            print('LOG :: form is NOT valid')
+            if id:
+                pr = get_object_or_404(models.PrayerRequest, pk=id)            
+                pr.title = form.cleaned_data['title']
+                pr.description = form.cleaned_data['description']
+                pr.is_urgent = form.cleaned_data['is_urgent']
+                pr.is_public = form.cleaned_data['is_public']
+                pr.save()
+            else:
+                form.save()                            
+            return redirect('/prayer/')
+        else:            
             return render(request, 'create.html', {'form': form})        
 
 @login_required

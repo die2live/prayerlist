@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-	url(r'^prayer/', include('prayerlistapp.urls')),
+	url(r'^prayer/', include('prayerlistapp.urls', namespace='prayer')),
 	url(r'^login/$', auth_views.login, name='login'),
     url(r'^logout/$', auth_views.logout, name='logout'),
 	url(r'^oauth/', include('social_django.urls', namespace='social')),

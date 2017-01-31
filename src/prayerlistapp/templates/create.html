@@ -9,8 +9,8 @@
 
           <form action="/prayer/edit/" method="POST">
             {% csrf_token %}
-            {{ form.non_field_errors}}
-            <input type="hidden" id="{{ form.id.id_for_label }}" name="{{ form.id.html_name }}" value="{{ form.id.value }}">
+            {{ form.non_field_errors}}            
+            <input type="hidden" name="id" value="{{ pr_id }}"/>
             <div class="form-group">            
               <label for="{{ form.title.id_for_label }}">{{ form.title.label }}</label>
               <input type="text" class="form-control" id="{{ form.title.id_for_label }}" name="{{ form.title.html_name }}" placeholder="{{ form.title.label }}" value="{{ form.title.value|default_if_none:'' }}">
@@ -33,7 +33,11 @@
                 {{ form.is_public.label }}
               </label>              
             </div>
-            <p><input type="submit" value="Update" class="btn btn-primary"/></p>
+            <p>
+              <input type="submit" value="Update" class="btn btn-primary"/>
+              <a class="btn btn-default" href="/prayer/" role="button">Cancel</a>
+            </p>
+
           </form>               
         </div>        
       </div>
