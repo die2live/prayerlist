@@ -49,7 +49,8 @@ def today(request):
 
 @login_required
 def edit(request, pk):
-    id = pk if pk else request.POST['id']
+    print('LOG :: pk = %s' % pk)       
+    id = pk
     if request.method == 'GET':                
         if id:            
             pr = get_object_or_404(models.PrayerRequest, pk=id)
@@ -57,7 +58,8 @@ def edit(request, pk):
         else:
             form = forms.EditPrayerRequestForm()        
         return render(request, 'create.html', {'form': form, 'pr_id': id})
-    elif request.method == 'POST':        
+    elif request.method == 'POST':       
+        id = pk if pk else request.POST['id'] 
         form = forms.EditPrayerRequestForm(request.POST)
         print('LOG :: id: %s' % id)
         if form.is_valid():
@@ -73,7 +75,7 @@ def edit(request, pk):
             else:
                 form.save()                            
                 messages.add_message(request, messages.INFO, 'Your prayer request was saved.')
-            return redirect('/prayer/')
+            return redirect('/all/')
         else:     
             print('LOG :: form NOT valid')       
             return render(request, 'create.html', {'form': form})        
