@@ -4,18 +4,33 @@
   <!-- Example row of columns -->
   <div class="row">
     <div class="col-md-12">
-      <div class="grid">
-        {% for pr in prayer_requests %}
-          <div class="grid-item pr small">
-            <p class="pr-title text-capitalize"><strong>{{ pr.title }}</strong></p>
-            <p class="pr-description">{{ pr.description }}</p>
-            <div class="pr-mng">
-              <a class="btn btn-default btn-xs" href="/edit/{{ pr.id }}/" role="button">Edit</a>
-              <button type="button" class="btn btn-default btn-xs deletebtn" data-id="{{ pr.id }}">Delete</button>
-            </div>
-          </div>          
-        {% endfor %}        
-      </div>      
+      <table id="prs_table" class="display">
+        <thead>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Is Public</th>
+          <th>Is Urgent</th>
+          <th>Crated Date</th>
+          <th></th>
+        </thead>
+        <tbody>
+          {% for pr in prayer_requests %}
+            <tr>
+              <td>{{ pr.title }}</td>
+              <td>{{ pr.description }}</td>
+              <td>{{ pr.is_public }}</td>
+              <td>{{ pr.is_urgent }}</td>
+              <td>{{ pr.created_date }}</td>
+              <td>
+                <div class="pr-mng">
+                  <a class="btn btn-default btn-xs" href="/edit/{{ pr.id }}/" role="button">Edit</a>
+                  <button type="button" class="btn btn-default btn-xs deletebtn" data-id="{{ pr.id }}">Delete</button>
+                </div>
+              </td>
+            </tr>            
+          {% endfor %}        
+        </tbody>
+      </table>      
       <p><a class="btn btn-primary" href="/edit/" role="button">Add RP &raquo;</a></p>
       {% csrf_token %}
     </div>        
@@ -27,11 +42,7 @@
   <script type="text/javascript">
     $(document).ready(function () {
       
-      $('.grid').masonry({
-        itemSelector: '.grid-item',
-        columnWidth: 310,
-        percentPosition: true        
-      });
+      $('#prs_table').DataTable();
 
       $('.deletebtn').click(function() {
         if(confirm('Are you sure?')) {
