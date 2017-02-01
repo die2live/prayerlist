@@ -12,16 +12,40 @@ from . import models
 from . import forms
 from social.apps.django_app.default.models import UserSocialAuth
 
+def index(request):   
+    prs = models.PrayerRequest.objects.all()
+    return render(
+        request, 
+        'index.html',
+        {
+            'prayer_requests': prs,
+        }
+    )
+
+
 @login_required
-def index(request):
-	prs = models.PrayerRequest.objects.all()
-	return render(
+def all(request):	
+    prs = models.PrayerRequest.objects.all()
+    return render(
 		request, 
-		'index.html',
+		'all.html',
 		{
 			'prayer_requests': prs,
 		}
 	)
+
+
+@login_required
+def today(request): 
+    prs = models.PrayerRequest.objects.order_by('-created_date')[:6]
+    return render(
+        request, 
+        'today.html',
+        {
+            'prayer_requests': prs,
+        }
+    )
+
 
 @login_required
 def edit(request, pk):

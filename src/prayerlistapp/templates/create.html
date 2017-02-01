@@ -7,7 +7,7 @@
       <div class="row">
         <div class="col-md-6">
 
-          <form action="/prayer/edit/" method="POST">
+          <form action="/edit/" method="POST">
             {% csrf_token %}
             {{ form.non_field_errors}}            
             <input type="hidden" name="id" value="{{ pr_id }}"/>
@@ -35,7 +35,7 @@
             </div>
             <p>
               <input type="submit" value="Update" class="btn btn-primary"/>
-              <a class="btn btn-default" href="/prayer/" role="button">Cancel</a>
+              <a class="btn btn-default" href="/all" role="button">Cancel</a>
             </p>
 
           </form>               
