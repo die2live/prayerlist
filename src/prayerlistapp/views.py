@@ -37,12 +37,14 @@ def all(request):
 
 @login_required
 def today(request): 
-    prs = models.PrayerRequest.objects.order_by('-created_date')[:6]
+    uprs = models.PrayerRequest.objects.filter(is_urgent=True).order_by('-created_date')[:6]
+    prs = models.PrayerRequest.objects.filter(is_urgent=False).order_by('-created_date')[:6]
     return render(
         request, 
         'today.html',
         {
             'prayer_requests': prs,
+            'urgent_prayer_requests': uprs,
         }
     )
 

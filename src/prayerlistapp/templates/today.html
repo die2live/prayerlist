@@ -5,8 +5,18 @@
   <div class="row">
     <div class="col-md-12">
       <div class="grid">
+        {% for pr in urgent_prayer_requests %}
+          <div class="grid-item pr small bg-danger">
+            <p class="pr-title text-capitalize"><strong>{{ pr.title }}</strong></p>
+            <p class="pr-description">{{ pr.description }}</p>
+            <div class="pr-mng">
+              <a class="btn btn-default btn-xs" href="/edit/{{ pr.id }}/" role="button">Edit</a>
+              <button type="button" class="btn btn-default btn-xs deletebtn" data-id="{{ pr.id }}">Delete</button>
+            </div>
+          </div>          
+        {% endfor %}
         {% for pr in prayer_requests %}
-          <div class="grid-item pr small">
+          <div class="grid-item pr small bg-info">
             <p class="pr-title text-capitalize"><strong>{{ pr.title }}</strong></p>
             <p class="pr-description">{{ pr.description }}</p>
             <div class="pr-mng">
