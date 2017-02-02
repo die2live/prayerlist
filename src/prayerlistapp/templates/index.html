@@ -1,23 +1,19 @@
 {% extends 'layout.html' %}
 
+{% block jumbotron %}
+  
+  <h1>PR</h1>
+  <p>some text some text some text some text some text some text some text some text some text some text 
+  some text some text some text some text some text some text some text some text some text some text </p>
+  <p><a class="btn btn-primary btn-lg" href="/about/" role="button">Learn more &raquo;</a></p>
+  
+{% endblock %}
+
 {% block content %}
-  <!-- Example row of columns -->
+  
   <div class="row">
-    <div class="col-md-12">
-      <div class="grid">
-        {% for pr in prayer_requests %}
-          <div class="grid-item pr small">
-            <p class="pr-title text-capitalize"><strong>{{ pr.title }}</strong></p>
-            <p class="pr-description">{{ pr.description }}</p>
-            <div class="pr-mng">
-              <a class="btn btn-default btn-xs" href="/edit/{{ pr.id }}/" role="button">Edit</a>
-              <button type="button" class="btn btn-default btn-xs deletebtn" data-id="{{ pr.id }}">Delete</button>
-            </div>
-          </div>          
-        {% endfor %}        
-      </div>      
-      <p><a class="btn btn-primary" href="/edit/" role="button">Add RP &raquo;</a></p>
-      {% csrf_token %}
+    <div class="col-md-12">      
+      
     </div>        
   </div>
 
@@ -26,25 +22,6 @@
 {% block scripts %}
   <script type="text/javascript">
     $(document).ready(function () {
-      
-      $('.grid').masonry({
-        itemSelector: '.grid-item',
-        columnWidth: 310,
-        percentPosition: true        
-      });
-
-      $('.deletebtn').click(function() {
-        if(confirm('Are you sure?')) {
-          var id = $(this).data('id');                  
-          $.post(
-            '/delete/' + id + '/', 
-            {'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()},
-            function(data) {
-              window.location = '/all/';
-            } );
-        } 
-      });
-
     });
   </script>
 {% endblock %}

@@ -8,6 +8,7 @@ urlpatterns = [
     url(r'^all/$', views.all, name='all'),	
     url(r'^edit/(?P<pk>\d*)(\/*)$', views.edit, name='edit'),	
     url(r'^delete/(?P<id>\d*)(\/*)$', views.delete, name='delete'),	
+    url(r'^about/$', views.about, name='about'),	
     url(r'^settings/$', views.settings, name='settings'),
     url(r'^settings/password/$', views.password, name='password'),    
 ]

@@ -72,7 +72,7 @@
             {% else %}
             <li class="active"><a href="/">Home</a></li>
             {% endif %}
-            <li><a href="#">About</a></li>
+            <li><a href="/about/">About</a></li>
           </ul>
           
           <form class="navbar-right navbar-form">
@@ -93,7 +93,11 @@
     </nav>    
 
     <div class="container">
-      <div class="jumbotron"><div class="container"></div></div>
+      <div class="jumbotron">
+        <div class="container">
+          {% block jumbotron %}{% endblock %}
+        </div>
+      </div>
 
       <div class="row">
         <div class="col-md-12">      

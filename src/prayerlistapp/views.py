@@ -23,6 +23,14 @@ def index(request):
     )
 
 
+def about(request):       
+    return render(
+        request, 
+        'about.html',
+        {}
+    )
+
+
 @login_required
 def all(request):	
     prs = models.PrayerRequest.objects.all()
