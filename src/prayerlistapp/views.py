@@ -80,7 +80,7 @@ def edit(request, pk):
             return redirect('/all/')
         else:     
             print('LOG :: form NOT valid')       
-            return render(request, 'create.html', {'form': form})        
+            return render(request, 'create.html', {'form': form, 'pr_id': id})
 
 
 @login_required

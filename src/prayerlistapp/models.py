@@ -8,6 +8,7 @@ class PrayerRequest(models.Model):
 	deleted_date = models.DateTimeField(null=True)
 	is_urgent = models.BooleanField(default=False)
 	is_public = models.BooleanField(default=False)
+	show_date = models.DateField(null=True, blank=True)
 
 	def __str__(self):
 		return self.title

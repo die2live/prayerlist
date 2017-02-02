@@ -5,21 +5,27 @@
 
     <!-- Example row of columns -->
       <div class="row">
+        <div class="col-md-3"></div>
         <div class="col-md-6">
 
           <form action="/edit/" method="POST">
             {% csrf_token %}
             {{ form.non_field_errors}}            
-            <input type="hidden" name="id" value="{{ pr_id }}"/>
+            <input type="hidden" name="id" value="{{ pr_id }}"/>            
             <div class="form-group">            
               <label for="{{ form.title.id_for_label }}">{{ form.title.label }}</label>
-              <input type="text" class="form-control" id="{{ form.title.id_for_label }}" name="{{ form.title.html_name }}" placeholder="{{ form.title.label }}" value="{{ form.title.value|default_if_none:'' }}">
+              {{ form.title }}
               {{ form.title.errors }}
             </div>
             <div class="form-group">
               <label for="{{ form.description.id_for_label }}">{{ form.description.label }}</label>
-              <textarea class="form-control" rows="5" id="{{ form.description.id_for_label }}" name="{{ form.description.html_name }}">{{ form.description.value|default_if_none:'' }}</textarea>
+              {{ form.description }}
               {{ form.description.errors }}
+            </div>
+            <div class="form-group">            
+              <label for="{{ form.show_date.id_for_label }}">{{ form.show_date.label }}</label>              
+              {{ form.show_date }}
+              {{ form.show_date.errors }}
             </div>
             <div class="checkbox">
               <label>
@@ -39,7 +45,20 @@
             </p>
 
           </form>               
-        </div>        
+        </div>   
+        <div class="col-md-3"></div>     
       </div>
 
+{% endblock %}
+
+{% block scripts %}
+  <script type="text/javascript">
+    $(document).ready(function () {
+
+      $('.datepicker').datepicker({
+        dateFormat: 'yy-mm-dd',
+      });
+
+    });
+  </script>
 {% endblock %}
