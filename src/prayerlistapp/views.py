@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.template import Template, Context
 from django.http import HttpResponse
 from django.views.decorators.http import require_POST
-import datetime
+from datetime import datetime
 
 from . import models
 from . import forms
@@ -45,8 +45,8 @@ def all(request):
 
 @login_required
 def today(request): 
-    uprs = models.PrayerRequest.objects.filter(is_urgent=True).order_by('-created_date')[:6]
-    prs = models.PrayerRequest.objects.filter(is_urgent=False).order_by('-created_date')[:6]
+    uprs = models.PrayerRequest.objects.filter(is_urgent=True, show_date__gte=datetime.today()).order_by('-created_date')[:6]
+    prs = models.PrayerRequest.objects.filter(is_urgent=False, show_date__gte=datetime.today()).order_by('-created_date')[:6]
     return render(
         request, 
         'today.html',
@@ -58,8 +58,7 @@ def today(request):
 
 
 @login_required
-def edit(request, pk):
-    print('LOG :: pk = %s' % pk)       
+def edit(request, pk):    
     id = pk
     if request.method == 'GET':                
         if id:            
@@ -70,10 +69,8 @@ def edit(request, pk):
         return render(request, 'create.html', {'form': form, 'pr_id': id})
     elif request.method == 'POST':       
         id = pk if pk else request.POST['id'] 
-        form = forms.EditPrayerRequestForm(request.POST)
-        print('LOG :: id: %s' % id)
-        if form.is_valid():
-            print('LOG :: form valid')
+        form = forms.EditPrayerRequestForm(request.POST)        
+        if form.is_valid():            
             if id:
                 pr = get_object_or_404(models.PrayerRequest, pk=id)            
                 pr.title = form.cleaned_data['title']
@@ -86,8 +83,7 @@ def edit(request, pk):
                 form.save()                            
                 messages.add_message(request, messages.INFO, 'Your prayer request was saved.')
             return redirect('/all/')
-        else:     
-            print('LOG :: form NOT valid')       
+        else:                 
             return render(request, 'create.html', {'form': form, 'pr_id': id})
 
 
