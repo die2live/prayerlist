@@ -33,7 +33,7 @@ def about(request):
 
 @login_required
 def all(request):	
-    prs = models.PrayerRequest.objects.all()
+    prs = models.PrayerRequest.objects.filter(created_by=request.user.profile)
     return render(
 		request, 
 		'all.html',
@@ -45,8 +45,8 @@ def all(request):
 
 @login_required
 def today(request): 
-    uprs = models.PrayerRequest.objects.filter(is_urgent=True, show_date__gte=datetime.today()).order_by('-created_date')[:6]
-    prs = models.PrayerRequest.objects.filter(is_urgent=False, show_date__gte=datetime.today()).order_by('-created_date')[:6]
+    uprs = models.PrayerRequest.objects.filter(created_by=request.user.profile, is_urgent=True, show_date=datetime.today()).order_by('-created_date')[:request.user.profile.num_urgent_pr]
+    prs = models.PrayerRequest.objects.filter(created_by=request.user.profile, is_urgent=False, show_date=datetime.today()).order_by('-created_date')[:request.user.profile.num_normal_pr]
     return render(
         request, 
         'today.html',
@@ -65,26 +65,32 @@ def edit(request, pk):
             pr = get_object_or_404(models.PrayerRequest, pk=id)
             form = forms.EditPrayerRequestForm(instance=pr)
         else:
-            form = forms.EditPrayerRequestForm()        
+            form = forms.EditPrayerRequestForm()
         return render(request, 'create.html', {'form': form, 'pr_id': id})
     elif request.method == 'POST':       
-        id = pk if pk else request.POST['id'] 
-        form = forms.EditPrayerRequestForm(request.POST)        
-        if form.is_valid():            
-            if id:
-                pr = get_object_or_404(models.PrayerRequest, pk=id)            
-                pr.title = form.cleaned_data['title']
-                pr.description = form.cleaned_data['description']
-                pr.is_urgent = form.cleaned_data['is_urgent']
-                pr.is_public = form.cleaned_data['is_public']
-                pr.save()
+        id = pk if pk else request.POST['id']         
+        if id:
+            pr = get_object_or_404(models.PrayerRequest, pk=id)            
+            form = forms.EditPrayerRequestForm(request.POST, instance=pr)                    
+            if form.is_valid():                        
+                #pr.title = form.cleaned_data['title']
+                #pr.description = form.cleaned_data['description']
+                #pr.is_urgent = form.cleaned_data['is_urgent']
+                #pr.is_public = form.cleaned_data['is_public']
+                #pr.created_by = request.user.profile
+                #pr.save()
+                form.save()
                 messages.add_message(request, messages.INFO, 'Your prayer request was updated.')
             else:
-                form.save()                            
-                messages.add_message(request, messages.INFO, 'Your prayer request was saved.')
-            return redirect('/all/')
-        else:                 
-            return render(request, 'create.html', {'form': form, 'pr_id': id})
+                return render(request, 'create.html', {'form': form, 'pr_id': id})               
+        else:   
+            new_form = forms.EditPrayerRequestForm(request.POST)
+            new_pr = new_form.save(commit=False)            
+            new_pr.created_by = request.user.profile
+            new_pr.save()                            
+            messages.add_message(request, messages.INFO, 'Your prayer request was saved.')              
+        return redirect('/all/')
+            
 
 
 @login_required
@@ -97,30 +103,48 @@ def delete(request, id):
 
 @login_required
 def settings(request):
-    user = request.user
+    if request.method == 'POST':
+        user_form = forms.EditUserForm(request.POST, instance=request.user)
+        profile_form = forms.EditProfileForm(request.POST, instance=request.user.profile)
 
-    try:
-        github_login = user.social_auth.get(provider='github')
-    except UserSocialAuth.DoesNotExist:
-        github_login = None
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, ('Your profile was successfully updated!'))
+            return redirect('prayer:settings')
+        else:
+            messages.error(request, ('Please correct the error below.'))
+    else:
+        user_form = forms.EditUserForm(instance=request.user)
+        profile_form = forms.EditProfileForm(instance=request.user.profile)
 
-    try:
-        twitter_login = user.social_auth.get(provider='twitter')
-    except UserSocialAuth.DoesNotExist:
-        twitter_login = None
+        user = request.user
 
-    try:
-        facebook_login = user.social_auth.get(provider='facebook')
-    except UserSocialAuth.DoesNotExist:
-        facebook_login = None
+        try:
+            github_login = user.social_auth.get(provider='github')
+        except UserSocialAuth.DoesNotExist:
+            github_login = None
 
-    can_disconnect = (user.social_auth.count() > 1 or user.has_usable_password())
+        try:
+            twitter_login = user.social_auth.get(provider='twitter')
+        except UserSocialAuth.DoesNotExist:
+            twitter_login = None
+
+        try:
+            facebook_login = user.social_auth.get(provider='facebook')
+        except UserSocialAuth.DoesNotExist:
+            facebook_login = None
+
+        can_disconnect = (user.social_auth.count() > 1 or user.has_usable_password())
 
     return render(request, 'core/settings.html', {
         'github_login': github_login,
         'twitter_login': twitter_login,
         'facebook_login': facebook_login,
-        'can_disconnect': can_disconnect
+        'can_disconnect': can_disconnect,
+        #'profile': profile,
+        'profile_form': profile_form,
+        'user_form': user_form
     })
 
 @login_required

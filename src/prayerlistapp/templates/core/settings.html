@@ -1,54 +1,126 @@
 {% extends 'layout.html' %}
 
-{% block content %}
-  <h2>Settings</h2>
+{% block content %} 
 
-  <h3>GitHub</h3>
-  {% if github_login %}
-    <p>Connected as <a href="https://github.com/{{ github_login.extra_data.login }}/" target="_blank">{{ github_login.extra_data.login }}</a></p>
-    {% if can_disconnect %}
-      <form method="post" action="{% url 'social:disconnect' 'github' %}">
-        {% csrf_token %}
-        <button type="submit">Disconnect from GitHub</button>
-      </form>
-    {% else %}
-      <button type="button" disabled>Disconnect from GitHub</button>
-      <p style="color: red">You must <a href="{% url 'password' %}">define a password</a> for your account before disconnecting from Github.</p>
-    {% endif %}
-  {% else %}
-    <a href="{% url 'social:begin' 'github' %}">Connect to GitHub</a>
-  {% endif %}
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Settings</h2>
+    </div>
+  </div>
 
-  <h3>Twitter</h3>
-  {% if twitter_login %}
-    <p>Connected as <a href="https://twitter.com/{{ twitter_login.extra_data.access_token.screen_name }}/" target="_blank">@{{ twitter_login.extra_data.access_token.screen_name }}</a></p>
-    {% if can_disconnect %}
-      <form method="post" action="{% url 'social:disconnect' 'twitter' %}">
-        {% csrf_token %}
-        <button type="submit">Disconnect from Twitter</button>
-      </form>
-    {% else %}
-      <button type="button" disabled>Disconnect from Twitter</button>
-      <p style="color: red">You must <a href="{% url 'password' %}">define a password</a> for your account before disconnecting from Twitter.</p>
-    {% endif %}
-  {% else %}
-    <a href="{% url 'social:begin' 'twitter' %}">Connect to Twitter</a>
-  {% endif %}
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
 
-  <h3>Facebook</h3>
-  {% if facebook_login %}
-    <p>Connected as <a href="https://facebook.com/{{ facebook_login.extra_data.id }}/" target="_blank">{{ facebook_login.extra_data.id }}</a></p>
-    {% if can_disconnect %}
-      <form method="post" action="{% url 'social:disconnect' 'facebook' %}">
-        {% csrf_token %}
-        <button type="submit">Disconnect from Facebook</button>
-      </form>
-    {% else %}
-      <button type="button" disabled>Disconnect from Facebook</button>
-      <p style="color: red">You must <a href="{% url 'password' %}">define a password</a> for your account before disconnecting from Facebook.</p>
-    {% endif %}
-  {% else %}
-    <a href="{% url 'social:begin' 'facebook' %}">Connect to Facebook</a>
-  {% endif %}
+      <div id="tabs">
+        <ul>
+          <li><a href="#tabs-1">Profile</a></li>
+          <li><a href="#tabs-2">Authentication</a></li>
+        </ul>
+        <div id="tabs-1">
+          <form action="{% url 'prayer:settings' %}" method="POST">
+            {% csrf_token %}
+            {{ user_form.non_field_errors}}
+            {{ profile_form.non_field_errors}}
 
+            <input type="hidden" name="id" value="{{ profile_form.id }}"/>            
+            
+            <div class="form-group">            
+              <label for="{{ user_form.first_name.id_for_label }}">{{ user_form.first_name.label }}</label>
+              {{ user_form.first_name }}
+              {{ user_form.first_name.errors }}
+            </div>
+            <div class="form-group">            
+              <label for="{{ user_form.last_name.id_for_label }}">{{ user_form.last_name.label }}</label>
+              {{ user_form.last_name }}
+              {{ user_form.last_name.errors }}
+            </div>
+            <div class="form-group">            
+              <label for="{{ user_form.email.id_for_label }}">{{ user_form.email.label }}</label>
+              {{ user_form.email }}
+              {{ user_form.email.errors }}
+            </div>
+            
+            
+            <div class="form-group">            
+              <label for="{{ profile_form.num_urgent_pr.id_for_label }}">{{ profile_form.num_urgent_pr.label }}</label>
+              {{ profile_form.num_urgent_pr }}
+              {{ profile_form.num_urgent_pr.errors }}
+            </div>
+            <div class="form-group">            
+              <label for="{{ profile_form.num_normal_pr.id_for_label }}">{{ profile_form.num_normal_pr.label }}</label>
+              {{ profile_form.num_normal_pr }}
+              {{ profile_form.num_normal_pr.errors }}
+            </div>
+            <p>
+              <input type="submit" value="Update" class="btn btn-primary"/>
+              <a class="btn btn-default" href="/all" role="button">Cancel</a>
+            </p>
+          </form>               
+        </div>
+        <div id="tabs-2">
+          <h3>GitHub</h3>
+          {% if github_login %}
+            <p>Connected as <a href="https://github.com/{{ github_login.extra_data.login }}/" target="_blank">{{ github_login.extra_data.login }}</a></p>
+            {% if can_disconnect %}
+              <form method="post" action="{% url 'social:disconnect' 'github' %}">
+                {% csrf_token %}
+                <button type="submit">Disconnect from GitHub</button>
+              </form>
+            {% else %}
+              <button type="button" disabled>Disconnect from GitHub</button>
+              <p style="color: red">You must <a href="{% url 'prayer:password' %}">define a password</a> for your account before disconnecting from Github.</p>
+            {% endif %}
+          {% else %}
+            <a href="{% url 'social:begin' 'github' %}">Connect to GitHub</a>
+          {% endif %}
+
+          <h3>Twitter</h3>
+          {% if twitter_login %}
+            <p>Connected as <a href="https://twitter.com/{{ twitter_login.extra_data.access_token.screen_name }}/" target="_blank">@{{ twitter_login.extra_data.access_token.screen_name }}</a></p>
+            {% if can_disconnect %}
+              <form method="post" action="{% url 'social:disconnect' 'twitter' %}">
+                {% csrf_token %}
+                <button type="submit">Disconnect from Twitter</button>
+              </form>
+            {% else %}
+              <button type="button" disabled>Disconnect from Twitter</button>
+              <p style="color: red">You must <a href="{% url 'prayer:password' %}">define a password</a> for your account before disconnecting from Twitter.</p>
+            {% endif %}
+          {% else %}
+            <a href="{% url 'social:begin' 'twitter' %}">Connect to Twitter</a>
+          {% endif %}
+
+          <h3>Facebook</h3>
+          {% if facebook_login %}
+            <p>Connected as <a href="https://facebook.com/{{ facebook_login.extra_data.id }}/" target="_blank">{{ facebook_login.extra_data.id }}</a></p>
+            {% if can_disconnect %}
+              <form method="post" action="{% url 'social:disconnect' 'facebook' %}">
+                {% csrf_token %}
+                <button type="submit">Disconnect from Facebook</button>
+              </form>
+            {% else %}
+              <button type="button" disabled>Disconnect from Facebook</button>
+              <p style="color: red">You must <a href="{% url 'prayer:password' %}">define a password</a> for your account before disconnecting from Facebook.</p>
+            {% endif %}
+          {% else %}
+            <a href="{% url 'social:begin' 'facebook' %}">Connect to Facebook</a>
+          {% endif %}
+        </div>
+      </div>     
+      
+    </div>   
+    <div class="col-md-2"></div>     
+  </div>  
+
+{% endblock %}
+
+{% block scripts %}
+  <script type="text/javascript">
+    $(document).ready(function () {
+
+      $('#tabs').tabs();
+
+    });
+  </script>
 {% endblock %}
