@@ -73,13 +73,7 @@ def edit(request, pk):
         if id:
             pr = get_object_or_404(models.PrayerRequest, pk=id)            
             form = forms.EditPrayerRequestForm(request.POST, instance=pr)                    
-            if form.is_valid():                        
-                #pr.title = form.cleaned_data['title']
-                #pr.description = form.cleaned_data['description']
-                #pr.is_urgent = form.cleaned_data['is_urgent']
-                #pr.is_public = form.cleaned_data['is_public']
-                #pr.created_by = request.user.profile
-                #pr.save()
+            if form.is_valid():                
                 form.save()
                 messages.add_message(request, messages.INFO, 'Your prayer request was updated.')
             else:
@@ -88,7 +82,7 @@ def edit(request, pk):
             new_form = forms.EditPrayerRequestForm(request.POST)
             new_pr = new_form.save(commit=False)            
             new_pr.created_by = request.user.profile
-            new_pr.save()                            
+            new_pr.save()                       
             messages.add_message(request, messages.INFO, 'Your prayer request was saved.')              
         return redirect('/all/')
             

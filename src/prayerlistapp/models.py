@@ -29,7 +29,25 @@ class PrayerRequest(models.Model):
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
 	if created:
-		Profile.objects.create(user=instance)
+		profile = Profile.objects.create(user=instance)
+		pr1 = PrayerRequest(
+			title='Pray for a specific individual',
+			description = 'Perhaps a person you know well, or even someone you have just met today. We know so many who still need God’s salvation. Pray earnestly for their soul, that God will deal with them as he has with us. We probably little realize how many prayed for us.',
+			created_by = profile
+		)
+		pr1.save()
+		pr2 = PrayerRequest(
+			title='Pray for a missionary or evangelist',
+			description = 'Many men and women have left family and friend behind to go forth and preach the message of God’s salvation. They need our prayers as they face difficulties we may never experience. Pray regularly for them by name, asking God to meet their specific needs.',
+			created_by = profile
+		)
+		pr2.save()
+		pr3 = PrayerRequest(
+			title='Pray for an area of need',
+			description = 'It may be a country far away, or a little town nearby. Remember the multitudes in need, many of whom don’t have the privilege of hearing the gospel message preached. Ask God to raise up those to go among them and present Christ as Saviour.',
+			created_by = profile
+		)
+		pr3.save()
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
