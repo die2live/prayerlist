@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AdminPasswordChangeForm, PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib import messages
+from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.template import Template, Context
 from django.http import HttpResponse
@@ -45,8 +46,8 @@ def all(request):
 
 @login_required
 def today(request): 
-    uprs = models.PrayerRequest.objects.filter(created_by=request.user.profile, is_urgent=True, show_date=datetime.today()).order_by('-created_date')[:request.user.profile.num_urgent_pr]
-    prs = models.PrayerRequest.objects.filter(created_by=request.user.profile, is_urgent=False, show_date=datetime.today()).order_by('-created_date')[:request.user.profile.num_normal_pr]
+    uprs = models.PrayerRequest.objects.filter(Q(created_by=request.user.profile), Q(is_urgent=True), Q(show_date=datetime.today()) | Q(show_date=None)).order_by('-created_date')[:request.user.profile.num_urgent_pr]
+    prs = models.PrayerRequest.objects.filter(Q(created_by=request.user.profile), Q(is_urgent=False), Q(show_date=datetime.today()) | Q(show_date=None)).order_by('-created_date')[:request.user.profile.num_normal_pr]
     return render(
         request, 
         'today.html',
