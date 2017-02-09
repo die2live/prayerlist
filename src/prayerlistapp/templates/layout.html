@@ -77,7 +77,7 @@
           
           <form class="navbar-right navbar-form">
             {% if user.is_authenticated %}
-            <a href="/logout" class="btn btn-success">Sign out</a>
+            <a href="{% url 'logout' %}?next=/" class="btn btn-success">Sign out</a>
             {% else %}
             <a href="/login" class="btn btn-success">Sign in</a>
             {% endif %}
