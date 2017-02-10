@@ -36,24 +36,3 @@
 
 {% endblock %}
 
-{% block scripts %}
-  <script type="text/javascript">
-    $(document).ready(function () {
-      
-      $('#prs_table').DataTable();
-
-      $('.deletebtn').click(function() {
-        if(confirm('Are you sure?')) {
-          var id = $(this).data('id');                  
-          $.post(
-            '/delete/' + id + '/', 
-            {'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()},
-            function(data) {
-              window.location = '/all/';
-            } );
-        } 
-      });
-
-    });
-  </script>
-{% endblock %}

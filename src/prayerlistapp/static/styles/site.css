@@ -1,0 +1,19 @@
+* {box-sizing: border-box;}
+.grid {
+  background: #EEE;
+  max-width: 940px;
+  padding: 2px 5px;
+}
+.grid:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.grid-item {
+  width: 310px;
+  height: auto;
+  float: left;        
+  border: 2px solid #FFF;        
+  border-radius: 5px;                
+  padding: 3px;
+}
