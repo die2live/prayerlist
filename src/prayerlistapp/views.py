@@ -13,8 +13,11 @@ from . import models
 from . import forms
 from social.apps.django_app.default.models import UserSocialAuth
 
-def index(request):   
-    prs = models.PrayerRequest.objects.all()
+def index(request):       
+    prs = models.PrayerRequest.objects.filter(                    
+                    Q(is_public=True),
+                    Q(show_date=datetime.today()) | 
+                    Q(show_date=None)).order_by('-created_date')[:6]
     return render(
         request, 
         'index.html',
