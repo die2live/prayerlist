@@ -5,9 +5,11 @@ from django.dispatch import receiver
 
 
 class Profile(models.Model):
+	id = models.BigAutoField(primary_key=True)
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
 	num_urgent_pr = models.PositiveSmallIntegerField(null=False, blank=False, default=6, verbose_name='Number of urgent prayer requests on today page')
 	num_normal_pr = models.PositiveSmallIntegerField(null=False, blank=False, default=6, verbose_name='Number of simple prayer requests on today page')
+	#groups = models.ManyToManyField(UserGroup)	
 
 
 class PrayerRequest(models.Model):
@@ -21,15 +23,25 @@ class PrayerRequest(models.Model):
 	show_date = models.DateField(null=True, blank=True)
 	created_by = models.ForeignKey(Profile, editable=False)
 
-
 	def __str__(self):
 		return self.title
+
+
+class UserGroup(models.Model):
+	id = models.BigAutoField(primary_key=True)
+	created_by = models.ForeignKey(Profile, editable=False, related_name='%(class)s_createdby')
+	users = models.ManyToManyField(Profile, related_name='%(class)s_usersattached')	
+	name = models.CharField(max_length=255, null=False, blank=False)
+
 
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
 	if created:
 		profile = Profile.objects.create(user=instance)
+		group = UserGroup.objects.create(name=instance.email, created_by=profile)
+		group.users.add(profile)
+
 		pr1 = PrayerRequest(
 			title='Pray for a specific individual',
 			description = 'Perhaps a person you know well, or even someone you have just met today. We know so many who still need God’s salvation. Pray earnestly for their soul, that God will deal with them as he has with us. We probably little realize how many prayed for us.',
