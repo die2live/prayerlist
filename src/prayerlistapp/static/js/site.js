@@ -6,8 +6,7 @@ $(document).ready(function () {
 	});
 
 	$('.grid').masonry({    
-		itemSelector: '.grid-item',
-		columnWidth: 310,
+		itemSelector: '.grid-item',		
 		percentPosition: true        
 	});
 

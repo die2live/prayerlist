@@ -1,7 +1,7 @@
 * {box-sizing: border-box;}
 .grid {
   background: #EEE;
-  max-width: 940px;
+  max-width: 1140px;
   padding: 2px 5px;
 }
 .grid:after {
@@ -10,7 +10,7 @@
   clear: both;
 }
 .grid-item {
-  width: 310px;
+  width: 285px;
   height: auto;
   float: left;        
   border: 2px solid #FFF;        
