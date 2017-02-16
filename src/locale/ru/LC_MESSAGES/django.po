@@ -22,15 +22,15 @@ msgstr ""
 
 #: prayerlist/settings.py:127
 msgid "English"
-msgstr ""
+msgstr "Английский"
 
 #: prayerlist/settings.py:128
 msgid "Romanian"
-msgstr ""
+msgstr "Румынский"
 
 #: prayerlist/settings.py:129
 msgid "Russian"
-msgstr ""
+msgstr "Русский"
 
 #: prayerlistapp/templates/layout.html:8
 msgid "Maintain a list of prayer requests and use it to pray daily"
@@ -38,7 +38,7 @@ msgstr ""
 
 #: prayerlistapp/templates/layout.html:45
 msgid "Today"
-msgstr ""
+msgstr "Сегодня"
 
 #: prayerlistapp/templates/layout.html:46
 msgid "Manage"
@@ -46,44 +46,44 @@ msgstr ""
 
 #: prayerlistapp/templates/layout.html:48
 msgid "Home"
-msgstr ""
+msgstr "Главная"
 
 #: prayerlistapp/templates/layout.html:50
 msgid "About"
-msgstr ""
+msgstr "Описание"
 
 #: prayerlistapp/templates/layout.html:55
 msgid "Sign out"
-msgstr ""
+msgstr "Выйти"
 
 #: prayerlistapp/templates/layout.html:57
 msgid "Sign in"
-msgstr ""
+msgstr "Войти"
 
 #: prayerlistapp/templates/layout.html:63
 msgid "Settings"
-msgstr ""
+msgstr "Настройки"
 
 #: prayerlistapp/views.py:82
 msgid "Your prayer request was updated."
-msgstr ""
+msgstr "Молитвенная нужда была обновлена."
 
 #: prayerlistapp/views.py:90
 msgid "Your prayer request was saved."
-msgstr ""
+msgstr "Молитвенная нужда была сохранена."
 
 #: prayerlistapp/views.py:100
 msgid "Your prayer request was deleted."
-msgstr ""
+msgstr "Молитвенная нужда была удалена."
 
 #: prayerlistapp/views.py:112
 msgid "Your profile was successfully updated!"
-msgstr ""
+msgstr "Профиль выл обновлен!"
 
 #: prayerlistapp/views.py:115 prayerlistapp/views.py:169
 msgid "Please correct the error below."
-msgstr ""
+msgstr "Исправьте следующие ошибки."
 
 #: prayerlistapp/views.py:166
 msgid "Your password was successfully updated!"
-msgstr ""
+msgstr "Ваш пароль был обновлен!"
