@@ -6,6 +6,7 @@ from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.template import Template, Context
 from django.http import HttpResponse
+from django.utils.translation import ugettext as _
 from django.views.decorators.http import require_POST
 from datetime import datetime
 
@@ -78,7 +79,7 @@ def edit(request, pk):
             form = forms.EditPrayerRequestForm(request.POST, instance=pr)                    
             if form.is_valid():                
                 form.save()
-                messages.add_message(request, messages.INFO, 'Your prayer request was updated.')
+                messages.add_message(request, messages.INFO, _('Your prayer request was updated.'))
             else:
                 return render(request, 'create.html', {'form': form, 'pr_id': id})               
         else:   
@@ -86,7 +87,7 @@ def edit(request, pk):
             new_pr = new_form.save(commit=False)            
             new_pr.created_by = request.user.profile
             new_pr.save()                       
-            messages.add_message(request, messages.INFO, 'Your prayer request was saved.')              
+            messages.add_message(request, messages.INFO, _('Your prayer request was saved.'))              
         return redirect('/all/')
             
 
@@ -96,7 +97,7 @@ def edit(request, pk):
 def delete(request, id):
     pr = get_object_or_404(models.PrayerRequest, pk=id)
     pr.delete()
-    messages.add_message(request, messages.INFO, 'Your prayer request was deleted.')
+    messages.add_message(request, messages.INFO, _('Your prayer request was deleted.'))
     return HttpResponse('OK')
 
 @login_required
@@ -108,10 +109,10 @@ def settings(request):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
-            messages.success(request, ('Your profile was successfully updated!'))
+            messages.success(request, _('Your profile was successfully updated!'))
             return redirect('prayer:settings')
         else:
-            messages.error(request, ('Please correct the error below.'))
+            messages.error(request, _('Please correct the error below.'))
     else:
         user_form = forms.EditUserForm(instance=request.user)
         profile_form = forms.EditProfileForm(instance=request.user.profile)
@@ -162,10 +163,10 @@ def password(request):
         if form.is_valid():
             form.save()
             update_session_auth_hash(request, form.user)
-            messages.success(request, 'Your password was successfully updated!')
+            messages.success(request, _('Your password was successfully updated!'))
             return redirect('password')
         else:
-            messages.error(request, 'Please correct the error below.')
+            messages.error(request, _('Please correct the error below.'))
     else:
         form = PasswordForm(request.user)
     return render(request, 'core/password.html', {'form': form})
