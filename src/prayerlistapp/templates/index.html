@@ -2,9 +2,9 @@
 
 {% block jumbotron %}
   
-  <h1>Prayer List</h1>
-  <p>Maintain a list of prayer requests and use it to pray daily</p>
-  <p><a class="btn btn-primary btn-lg" href="/about/" role="button">Learn more &raquo;</a></p>
+  <h1>{% trans 'Prayer list' %}</h1> <!-- Molitvenyj Spisok | Lista de rugaciune -->
+  <p>{% trans 'Maintain a list of prayer requests and use it to pray daily' %}</p>
+  <p><a class="btn btn-primary btn-lg" href="/about/" role="button">{% trans 'Learn more' %} &raquo;</a></p>
   
 {% endblock %}
 
@@ -19,8 +19,7 @@
             <p class="pr-description">{{ pr.description | safe }}</p>            
           </div>          
         {% endfor %}        
-      </div>          
-      
+      </div>      
     </div>        
   </div>
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-16 15:01+0200\n"
+"POT-Creation-Date: 2017-02-21 15:28+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,20 +20,96 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: prayerlist/settings.py:127
+#: prayerlist/settings.py:127 prayerlist/settings_blank.py:127
 msgid "English"
 msgstr "Английский"
 
-#: prayerlist/settings.py:128
+#: prayerlist/settings.py:128 prayerlist/settings_blank.py:128
 msgid "Romanian"
 msgstr "Румынский"
 
-#: prayerlist/settings.py:129
+#: prayerlist/settings.py:129 prayerlist/settings_blank.py:129
 msgid "Russian"
 msgstr "Русский"
 
-#: prayerlistapp/templates/layout.html:8
+#: prayerlistapp/templates/about.html:7
+msgid "About Prayer List"
+msgstr ""
+
+#: prayerlistapp/templates/about.html:8
+msgid "How Prayer List works?"
+msgstr ""
+
+#: prayerlistapp/templates/about.html:9
+msgid ""
+"We all have many prayer requests that we want to pray for. But when you "
+"start praying, you just can"
+msgstr ""
+
+#: prayerlistapp/templates/about.html:11
+msgid ""
+"Each time you hear a prayer request, submit it to the app, specifying the "
+"date when you want to pray for it. Each day, when your prayer time comes, "
+"open the app on the "
+msgstr ""
+
+#: prayerlistapp/templates/about.html:13
+msgid ""
+"The app gives you an option to make the prayer request public. Public prayer "
+"requests will appear on the home page to any visitor of the site."
+msgstr ""
+
+#: prayerlistapp/templates/all.html:7
+#, fuzzy
+#| msgid "Your prayer request was saved."
+msgid "Manage your prayer requests"
+msgstr "Молитвенная нужда была сохранена."
+
+#: prayerlistapp/templates/all.html:10
+msgid "Title"
+msgstr ""
+
+#: prayerlistapp/templates/all.html:11
+msgid "Is public"
+msgstr ""
+
+#: prayerlistapp/templates/all.html:12
+msgid "Show date"
+msgstr ""
+
+#: prayerlistapp/templates/all.html:23 prayerlistapp/templates/today.html:14
+msgid "Edit"
+msgstr ""
+
+#: prayerlistapp/templates/all.html:24
+msgid "Delete"
+msgstr ""
+
+#: prayerlistapp/templates/all.html:31 prayerlistapp/templates/today.html:20
+#, fuzzy
+#| msgid "Your prayer request was saved."
+msgid "Add prayer request"
+msgstr "Молитвенная нужда была сохранена."
+
+#: prayerlistapp/templates/create.html:36
+msgid "Update"
+msgstr ""
+
+#: prayerlistapp/templates/create.html:37
+msgid "Cancel"
+msgstr ""
+
+#: prayerlistapp/templates/index.html:5 prayerlistapp/templates/layout.html:40
+#: prayerlistapp/templates/layout.html:108
+msgid "Prayer list"
+msgstr ""
+
+#: prayerlistapp/templates/index.html:6 prayerlistapp/templates/layout.html:8
 msgid "Maintain a list of prayer requests and use it to pray daily"
+msgstr ""
+
+#: prayerlistapp/templates/index.html:7
+msgid "Learn more"
 msgstr ""
 
 #: prayerlistapp/templates/layout.html:45
@@ -64,26 +140,32 @@ msgstr "Войти"
 msgid "Settings"
 msgstr "Настройки"
 
-#: prayerlistapp/views.py:82
+#: prayerlistapp/templates/today.html:7
+#, fuzzy
+#| msgid "Your prayer request was updated."
+msgid "Your prayer requests for today"
+msgstr "Молитвенная нужда была обновлена."
+
+#: prayerlistapp/views.py:80
 msgid "Your prayer request was updated."
 msgstr "Молитвенная нужда была обновлена."
 
-#: prayerlistapp/views.py:90
+#: prayerlistapp/views.py:88
 msgid "Your prayer request was saved."
 msgstr "Молитвенная нужда была сохранена."
 
-#: prayerlistapp/views.py:100
+#: prayerlistapp/views.py:98
 msgid "Your prayer request was deleted."
 msgstr "Молитвенная нужда была удалена."
 
-#: prayerlistapp/views.py:112
+#: prayerlistapp/views.py:110
 msgid "Your profile was successfully updated!"
 msgstr "Профиль выл обновлен!"
 
-#: prayerlistapp/views.py:115 prayerlistapp/views.py:169
+#: prayerlistapp/views.py:113 prayerlistapp/views.py:167
 msgid "Please correct the error below."
 msgstr "Исправьте следующие ошибки."
 
-#: prayerlistapp/views.py:166
+#: prayerlistapp/views.py:164
 msgid "Your password was successfully updated!"
 msgstr "Ваш пароль был обновлен!"

@@ -4,12 +4,12 @@
   <!-- Example row of columns -->
   <div class="row">
     <div class="col-md-12">
-      <h1>Manager your prayer requests</h1>
+      <h1>{% trans 'Manage your prayer requests' %}</h1>
       <table id="prs_table" class="display">
         <thead>
-          <th>Title</th>          
-          <th>Is Public</th>          
-          <th>Show Date</th>
+          <th>{% trans 'Title' %}</th>          
+          <th>{% trans 'Is public' %}</th>          
+          <th>{% trans 'Show date' %}</th>
           <th></th>
         </thead>
         <tbody>
@@ -20,15 +20,15 @@
               <td>{{ pr.show_date }}</td>
               <td>
                 <div class="pr-mng">
-                  <a class="btn btn-default btn-xs" href="/edit/{{ pr.id }}/" role="button">Edit</a>
-                  <button type="button" class="btn btn-default btn-xs deletebtn" data-id="{{ pr.id }}">Delete</button>
+                  <a class="btn btn-default btn-xs" href="/edit/{{ pr.id }}/" role="button">{% trans 'Edit' %}</a>
+                  <button type="button" class="btn btn-default btn-xs deletebtn" data-id="{{ pr.id }}">{% trans 'Delete' %}</button>
                 </div>
               </td>
             </tr>            
           {% endfor %}        
         </tbody>
       </table>      
-      <p><a class="btn btn-primary" href="/edit/" role="button">Add RP &raquo;</a></p>
+      <p><a class="btn btn-primary" href="/edit/" role="button">{% trans 'Add prayer request' %} &raquo;</a></p>
       {% csrf_token %}
     </div>        
   </div>
