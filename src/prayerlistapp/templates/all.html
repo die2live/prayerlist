@@ -8,8 +8,7 @@
       <table id="prs_table" class="display">
         <thead>
           <th>Title</th>          
-          <th>Is Public</th>
-          <th>Is Urgent</th>
+          <th>Is Public</th>          
           <th>Show Date</th>
           <th></th>
         </thead>
@@ -17,8 +16,7 @@
           {% for pr in prayer_requests %}
             <tr>
               <td>{{ pr.title }}</td>              
-              <td>{{ pr.is_public }}</td>
-              <td>{{ pr.is_urgent }}</td>
+              <td>{{ pr.is_public }}</td>              
               <td>{{ pr.show_date }}</td>
               <td>
                 <div class="pr-mng">

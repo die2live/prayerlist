@@ -49,15 +49,13 @@ def all(request):
 
 
 @login_required
-def today(request): 
-    uprs = models.PrayerRequest.objects.filter(Q(created_by=request.user.profile), Q(is_urgent=True), Q(show_date=datetime.today()) | Q(show_date=None)).order_by('-created_date')[:request.user.profile.num_urgent_pr]
-    prs = models.PrayerRequest.objects.filter(Q(created_by=request.user.profile), Q(is_urgent=False), Q(show_date=datetime.today()) | Q(show_date=None)).order_by('-created_date')[:request.user.profile.num_normal_pr]
+def today(request):     
+    prs = models.PrayerRequest.objects.filter(Q(created_by=request.user.profile), Q(show_date=datetime.today()) | Q(show_date=None)).order_by('-created_date')[:request.user.profile.num_normal_pr]
     return render(
         request, 
         'today.html',
         {
-            'prayer_requests': prs,
-            'urgent_prayer_requests': uprs,
+            'prayer_requests': prs,            
         }
     )
 
