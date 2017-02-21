@@ -144,7 +144,7 @@ msgstr "Настройки"
 #, fuzzy
 #| msgid "Your prayer request was updated."
 msgid "Your prayer requests for today"
-msgstr "Молитвенная нужда была обновлена."
+msgstr "Молитвенные нужды на сегодня"
 
 #: prayerlistapp/views.py:80
 msgid "Your prayer request was updated."
