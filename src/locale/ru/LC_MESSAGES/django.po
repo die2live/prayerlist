@@ -34,11 +34,11 @@ msgstr "Русский"
 
 #: prayerlistapp/templates/about.html:7
 msgid "About Prayer List"
-msgstr ""
+msgstr "О сайте"
 
 #: prayerlistapp/templates/about.html:8
 msgid "How Prayer List works?"
-msgstr ""
+msgstr "Как это работает?"
 
 #: prayerlistapp/templates/about.html:9
 msgid ""
@@ -67,23 +67,23 @@ msgstr "Молитвенная нужда была сохранена."
 
 #: prayerlistapp/templates/all.html:10
 msgid "Title"
-msgstr ""
+msgstr "Заголовок"
 
 #: prayerlistapp/templates/all.html:11
 msgid "Is public"
-msgstr ""
+msgstr "Публично"
 
 #: prayerlistapp/templates/all.html:12
 msgid "Show date"
-msgstr ""
+msgstr "Дата показа"
 
 #: prayerlistapp/templates/all.html:23 prayerlistapp/templates/today.html:14
 msgid "Edit"
-msgstr ""
+msgstr "Редактировать"
 
 #: prayerlistapp/templates/all.html:24
 msgid "Delete"
-msgstr ""
+msgstr "Удалить"
 
 #: prayerlistapp/templates/all.html:31 prayerlistapp/templates/today.html:20
 #, fuzzy
@@ -93,16 +93,16 @@ msgstr "Молитвенная нужда была сохранена."
 
 #: prayerlistapp/templates/create.html:36
 msgid "Update"
-msgstr ""
+msgstr "Сохранить"
 
 #: prayerlistapp/templates/create.html:37
 msgid "Cancel"
-msgstr ""
+msgstr "Отменить"
 
 #: prayerlistapp/templates/index.html:5 prayerlistapp/templates/layout.html:40
 #: prayerlistapp/templates/layout.html:108
 msgid "Prayer list"
-msgstr ""
+msgstr "Молитвенный список"
 
 #: prayerlistapp/templates/index.html:6 prayerlistapp/templates/layout.html:8
 msgid "Maintain a list of prayer requests and use it to pray daily"
@@ -110,7 +110,7 @@ msgstr ""
 
 #: prayerlistapp/templates/index.html:7
 msgid "Learn more"
-msgstr ""
+msgstr "Узнай больше"
 
 #: prayerlistapp/templates/layout.html:45
 msgid "Today"
