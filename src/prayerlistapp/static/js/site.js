@@ -22,6 +22,8 @@ $(document).ready(function () {
 		} 
 	});
 
-	$('#prs_table').DataTable();      
+	$('#prs_table').DataTable({
+		'order': [[2, 'desc']]
+	});      
 
 });
