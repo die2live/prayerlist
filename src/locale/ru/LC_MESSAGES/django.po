@@ -68,7 +68,7 @@ msgstr ""
 
 #: prayerlistapp/templates/all.html:8
 msgid "Manage your prayer requests"
-msgstr "Молитвенная нужд"
+msgstr "Молитвенные нужды"
 
 #: prayerlistapp/templates/all.html:11
 msgid "Title"
