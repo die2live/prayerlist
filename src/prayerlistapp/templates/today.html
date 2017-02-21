@@ -13,7 +13,7 @@
             <p class="pr-description">{{ pr.description | safe }}</p>
             <div class="pr-mng">
               <a class="btn btn-default btn-xs" href="/edit/{{ pr.id }}/" role="button">{% trans 'Edit' %}</a>
-              <button type="button" class="btn btn-default btn-xs deletebtn" data-id="{{ pr.id }}">{ trans 'Delete' }</button>
+              <button type="button" class="btn btn-default btn-xs deletebtn" data-id="{{ pr.id }}">{% trans 'Delete' %}</button>
             </div>
           </div>          
         {% endfor %}        
