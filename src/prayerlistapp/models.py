@@ -44,9 +44,7 @@ class UserGroup(models.Model):
 def create_user_profile(sender, instance, created, **kwargs):
 	if created:
 		profile = Profile.objects.create(user=instance)
-		group = UserGroup.objects.create(name='Group for %s' % instance.email, created_by=profile)
-		group.users.add(profile)
-
+		
 		pr1 = PrayerRequest(
 			title='Pray for a specific individual',
 			description = 'Perhaps a person you know well, or even someone you have just met today. We know so many who still need God’s salvation. Pray earnestly for their soul, that God will deal with them as he has with us. We probably little realize how many prayed for us.',
