@@ -143,7 +143,7 @@ msgstr "Setări"
 #, fuzzy
 #| msgid "Your prayer request was updated."
 msgid "Your prayer requests for today"
-msgstr "Itemul a fost actualizat."
+msgstr "Nevoile de rugăciune pentru azi"
 
 #: prayerlistapp/views.py:80
 msgid "Your prayer request was updated."
