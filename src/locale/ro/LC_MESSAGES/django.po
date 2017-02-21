@@ -33,11 +33,11 @@ msgstr "Rusă"
 
 #: prayerlistapp/templates/about.html:7
 msgid "About Prayer List"
-msgstr ""
+msgstr "Despre Lista de rugăciune"
 
 #: prayerlistapp/templates/about.html:8
 msgid "How Prayer List works?"
-msgstr ""
+msgstr "Cum lucrează Lista de rugăciune?"
 
 #: prayerlistapp/templates/about.html:9
 msgid ""
@@ -66,23 +66,23 @@ msgstr "Itemul a fost actualizat."
 
 #: prayerlistapp/templates/all.html:10
 msgid "Title"
-msgstr ""
+msgstr "Titlu"
 
 #: prayerlistapp/templates/all.html:11
 msgid "Is public"
-msgstr ""
+msgstr "Este public"
 
 #: prayerlistapp/templates/all.html:12
 msgid "Show date"
-msgstr ""
+msgstr "Data"
 
 #: prayerlistapp/templates/all.html:23 prayerlistapp/templates/today.html:14
 msgid "Edit"
-msgstr ""
+msgstr "Editează"
 
 #: prayerlistapp/templates/all.html:24
 msgid "Delete"
-msgstr ""
+msgstr "Elimină"
 
 #: prayerlistapp/templates/all.html:31 prayerlistapp/templates/today.html:20
 #, fuzzy
@@ -96,12 +96,12 @@ msgstr ""
 
 #: prayerlistapp/templates/create.html:37
 msgid "Cancel"
-msgstr ""
+msgstr "Renunță"
 
 #: prayerlistapp/templates/index.html:5 prayerlistapp/templates/layout.html:40
 #: prayerlistapp/templates/layout.html:108
 msgid "Prayer list"
-msgstr ""
+msgstr "Lista de rugăciune"
 
 #: prayerlistapp/templates/index.html:6 prayerlistapp/templates/layout.html:8
 msgid "Maintain a list of prayer requests and use it to pray daily"
@@ -109,7 +109,7 @@ msgstr ""
 
 #: prayerlistapp/templates/index.html:7
 msgid "Learn more"
-msgstr ""
+msgstr "Află mai multe"
 
 #: prayerlistapp/templates/layout.html:45
 msgid "Today"
@@ -129,7 +129,7 @@ msgstr "Despre"
 
 #: prayerlistapp/templates/layout.html:55
 msgid "Sign out"
-msgstr ""
+msgstr "Ieși"
 
 #: prayerlistapp/templates/layout.html:57
 msgid "Sign in"
