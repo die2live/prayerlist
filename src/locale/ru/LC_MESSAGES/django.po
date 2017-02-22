@@ -92,7 +92,7 @@ msgstr "Удалить"
 
 #: prayerlistapp/templates/all.html:32 prayerlistapp/templates/today.html:21
 msgid "Add prayer request"
-msgstr ""
+msgstr "Добавить молитвенную нужду"
 
 #: prayerlistapp/templates/core/password.html:5
 msgid "Change Password"
@@ -169,11 +169,11 @@ msgstr ""
 
 #: prayerlistapp/templates/index.html:9
 msgid "Apostle Peter in"
-msgstr ""
+msgstr "Апостол Петр в"
 
 #: prayerlistapp/templates/index.html:9
 msgid "The first epistle of Peter, chapter 1, verse 7"
-msgstr ""
+msgstr "Первое послание Петра, глава 1, стих 7"
 
 #: prayerlistapp/templates/index.html:11 prayerlistapp/templates/layout.html:8
 msgid "Maintain a list of prayer requests and use it to pray daily"
