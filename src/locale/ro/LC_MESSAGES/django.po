@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-22 14:49+0200\n"
+"POT-Creation-Date: 2017-02-22 15:05+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -90,10 +90,8 @@ msgid "Delete"
 msgstr "Elimină"
 
 #: prayerlistapp/templates/all.html:32 prayerlistapp/templates/today.html:21
-#, fuzzy
-#| msgid "Your prayer request was saved."
 msgid "Add prayer request"
-msgstr "Itemul a fost actualizat."
+msgstr "Adauga nevoie de rugaciune"
 
 #: prayerlistapp/templates/core/password.html:5
 msgid "Change Password"
@@ -163,7 +161,15 @@ msgstr "Lista de rugăciune"
 #: prayerlistapp/templates/index.html:8
 msgid ""
 "The end of all things is near; therefore, be of sound judgment and sober "
-"spirit for the purpose of prayer. 1 Peter 4:7"
+"spirit for the purpose of prayer."
+msgstr ""
+
+#: prayerlistapp/templates/index.html:9
+msgid "Apostle Peter in"
+msgstr ""
+
+#: prayerlistapp/templates/index.html:9
+msgid "The first epistle of Peter, chapter 1, verse 7"
 msgstr ""
 
 #: prayerlistapp/templates/index.html:11 prayerlistapp/templates/layout.html:8
@@ -215,8 +221,6 @@ msgid "Login with"
 msgstr ""
 
 #: prayerlistapp/templates/today.html:8
-#, fuzzy
-#| msgid "Your prayer request was updated."
 msgid "Your prayer requests for today"
 msgstr "Nevoile de rugăciune pentru azi"
 

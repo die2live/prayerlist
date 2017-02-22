@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-22 14:49+0200\n"
+"POT-Creation-Date: 2017-02-22 15:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -91,10 +91,8 @@ msgid "Delete"
 msgstr "Удалить"
 
 #: prayerlistapp/templates/all.html:32 prayerlistapp/templates/today.html:21
-#, fuzzy
-#| msgid "Your prayer request was saved."
 msgid "Add prayer request"
-msgstr "Молитвенная нужда была сохранена."
+msgstr ""
 
 #: prayerlistapp/templates/core/password.html:5
 msgid "Change Password"
@@ -164,9 +162,18 @@ msgstr "Молитвенный список"
 #: prayerlistapp/templates/index.html:8
 msgid ""
 "The end of all things is near; therefore, be of sound judgment and sober "
-"spirit for the purpose of prayer. 1 Peter 4:7"
-msgstr "Впрочем близок всему конец.
-Итак будьте благоразумны и бодрствуйте в молитвах."
+"spirit for the purpose of prayer."
+msgstr ""
+"Впрочем близок всему конец. Итак будьте благоразумны и бодрствуйте в "
+"молитвах."
+
+#: prayerlistapp/templates/index.html:9
+msgid "Apostle Peter in"
+msgstr ""
+
+#: prayerlistapp/templates/index.html:9
+msgid "The first epistle of Peter, chapter 1, verse 7"
+msgstr ""
 
 #: prayerlistapp/templates/index.html:11 prayerlistapp/templates/layout.html:8
 msgid "Maintain a list of prayer requests and use it to pray daily"
