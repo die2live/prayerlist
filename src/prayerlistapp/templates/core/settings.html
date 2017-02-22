@@ -1,10 +1,11 @@
 {% extends 'layout.html' %}
+{% load i18n %}
 
 {% block content %} 
 
   <div class="row">
     <div class="col-md-12">
-      <h2>Settings</h2>
+      <h2>{% trans 'Settings' %}</h2>
     </div>
   </div>
 
@@ -14,8 +15,8 @@
 
       <div id="tabs">
         <ul>
-          <li><a href="#tabs-1">Profile</a></li>
-          <li><a href="#tabs-2">Authentication</a></li>
+          <li><a href="#tabs-1">{% trans 'Profile' %}</a></li>
+          <li><a href="#tabs-2">{% trans 'Authentication' %}</a></li>
         </ul>
         <div id="tabs-1">
           <form action="{% url 'prayer:settings' %}" method="POST">
@@ -53,74 +54,74 @@
               {{ profile_form.num_normal_pr.errors }}
             </div>
             <p>
-              <input type="submit" value="Update" class="btn btn-primary"/>
-              <a class="btn btn-default" href="/all" role="button">Cancel</a>
+              <input type="submit" value="{% trans 'Update' %}" class="btn btn-primary"/>
+              <a class="btn btn-default" href="/all" role="button">{% trans 'Cancel' %}</a>
             </p>
           </form>               
         </div>
         <div id="tabs-2">
           <h3>GitHub</h3>
           {% if github_login %}
-            <p>Connected as <a href="https://github.com/{{ github_login.extra_data.login }}/" target="_blank">{{ github_login.extra_data.login }}</a></p>
+            <p>{% trans 'Connected as' %} <a href="https://github.com/{{ github_login.extra_data.login }}/" target="_blank">{{ github_login.extra_data.login }}</a></p>
             {% if can_disconnect %}
               <form method="post" action="{% url 'social:disconnect' 'github' %}">
                 {% csrf_token %}
-                <button type="submit">Disconnect from GitHub</button>
+                <button type="submit">{% trans 'Disconnect from' %} GitHub</button>
               </form>
             {% else %}
-              <button type="button" disabled>Disconnect from GitHub</button>
+              <button type="button" disabled>{% trans 'Disconnect from' %} GitHub</button>
               <p style="color: red">You must <a href="{% url 'prayer:password' %}">define a password</a> for your account before disconnecting from Github.</p>
             {% endif %}
           {% else %}
-            <a href="{% url 'social:begin' 'github' %}">Connect to GitHub</a>
+            <a href="{% url 'social:begin' 'github' %}">{% trans 'Connect to' %} GitHub</a>
           {% endif %}
 
           <h3>Twitter</h3>
           {% if twitter_login %}
-            <p>Connected as <a href="https://twitter.com/{{ twitter_login.extra_data.access_token.screen_name }}/" target="_blank">@{{ twitter_login.extra_data.access_token.screen_name }}</a></p>
+            <p>{% trans 'Connected as' %} <a href="https://twitter.com/{{ twitter_login.extra_data.access_token.screen_name }}/" target="_blank">@{{ twitter_login.extra_data.access_token.screen_name }}</a></p>
             {% if can_disconnect %}
               <form method="post" action="{% url 'social:disconnect' 'twitter' %}">
                 {% csrf_token %}
-                <button type="submit">Disconnect from Twitter</button>
+                <button type="submit">{% trans 'Disconnect from' %} Twitter</button>
               </form>
             {% else %}
-              <button type="button" disabled>Disconnect from Twitter</button>
+              <button type="button" disabled>{% trans 'Disconnect from' %} Twitter</button>
               <p style="color: red">You must <a href="{% url 'prayer:password' %}">define a password</a> for your account before disconnecting from Twitter.</p>
             {% endif %}
           {% else %}
-            <a href="{% url 'social:begin' 'twitter' %}">Connect to Twitter</a>
+            <a href="{% url 'social:begin' 'twitter' %}">{% trans 'Connect to' %} Twitter</a>
           {% endif %}
 
           <h3>Facebook</h3>
           {% if facebook_login %}
-            <p>Connected as <a href="https://facebook.com/{{ facebook_login.extra_data.id }}/" target="_blank">{{ facebook_login.extra_data.id }}</a></p>
+            <p>{% trans 'Connected as' %} <a href="https://facebook.com/{{ facebook_login.extra_data.id }}/" target="_blank">{{ facebook_login.extra_data.id }}</a></p>
             {% if can_disconnect %}
               <form method="post" action="{% url 'social:disconnect' 'facebook' %}">
                 {% csrf_token %}
-                <button type="submit">Disconnect from Facebook</button>
+                <button type="submit">{% trans 'Disconnect from' %} Facebook</button>
               </form>
             {% else %}
-              <button type="button" disabled>Disconnect from Facebook</button>
+              <button type="button" disabled>{% trans 'Disconnect from' %} Facebook</button>
               <p style="color: red">You must <a href="{% url 'prayer:password' %}">define a password</a> for your account before disconnecting from Facebook.</p>
             {% endif %}
           {% else %}
-            <a href="{% url 'social:begin' 'facebook' %}">Connect to Facebook</a>
+            <a href="{% url 'social:begin' 'facebook' %}">{% trans 'Connect to' %} Facebook</a>
           {% endif %}
 
           <h3>Google</h3>
           {% if google_login %}
-            <p>Connected as <a href="https://google.com/{{ google_login.extra_data.id }}/" target="_blank">{{ google_login.extra_data.id }}</a></p>
+            <p>{% trans 'Connected as' %} <a href="https://google.com/{{ google_login.extra_data.id }}/" target="_blank">{{ google_login.extra_data.id }}</a></p>
             {% if can_disconnect %}
               <form method="post" action="{% url 'social:disconnect' 'google_oauth2' %}">
                 {% csrf_token %}
-                <button type="submit">Disconnect from Google</button>
+                <button type="submit">{% trans 'Disconnect from' %} Google</button>
               </form>
             {% else %}
-              <button type="button" disabled>Disconnect from Google</button>
+              <button type="button" disabled>{% trans 'Disconnect from' %} Google</button>
               <p style="color: red">You must <a href="{% url 'prayer:password' %}">define a password</a> for your account before disconnecting from Google.</p>
             {% endif %}
           {% else %}
-            <a href="{% url 'social:begin' 'google_oauth2' %}">Connect to Google</a>
+            <a href="{% url 'social:begin' 'google_oauth2' %}">{% trans 'Connect to' %} Google</a>
           {% endif %}
         </div>
       </div>     

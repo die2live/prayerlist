@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-21 17:19+0200\n"
+"POT-Creation-Date: 2017-02-22 14:49+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -95,24 +95,82 @@ msgstr "Elimină"
 msgid "Add prayer request"
 msgstr "Itemul a fost actualizat."
 
+#: prayerlistapp/templates/core/password.html:5
+msgid "Change Password"
+msgstr ""
+
+#: prayerlistapp/templates/core/password.html:7
+msgid "You have not defined a password yet."
+msgstr ""
+
+#: prayerlistapp/templates/core/password.html:12
+msgid "Save changes"
+msgstr ""
+
+#: prayerlistapp/templates/core/settings.html:8
+#: prayerlistapp/templates/layout.html:63
+msgid "Settings"
+msgstr "Setări"
+
+#: prayerlistapp/templates/core/settings.html:18
+msgid "Profile"
+msgstr ""
+
+#: prayerlistapp/templates/core/settings.html:19
+msgid "Authentication"
+msgstr ""
+
+#: prayerlistapp/templates/core/settings.html:57
 #: prayerlistapp/templates/create.html:36
 msgid "Update"
 msgstr ""
 
+#: prayerlistapp/templates/core/settings.html:58
 #: prayerlistapp/templates/create.html:37
 msgid "Cancel"
 msgstr "Renunță"
+
+#: prayerlistapp/templates/core/settings.html:65
+#: prayerlistapp/templates/core/settings.html:81
+#: prayerlistapp/templates/core/settings.html:97
+#: prayerlistapp/templates/core/settings.html:113
+msgid "Connected as"
+msgstr ""
+
+#: prayerlistapp/templates/core/settings.html:69
+#: prayerlistapp/templates/core/settings.html:72
+#: prayerlistapp/templates/core/settings.html:85
+#: prayerlistapp/templates/core/settings.html:88
+#: prayerlistapp/templates/core/settings.html:101
+#: prayerlistapp/templates/core/settings.html:104
+#: prayerlistapp/templates/core/settings.html:117
+#: prayerlistapp/templates/core/settings.html:120
+msgid "Disconnect from"
+msgstr ""
+
+#: prayerlistapp/templates/core/settings.html:76
+#: prayerlistapp/templates/core/settings.html:92
+#: prayerlistapp/templates/core/settings.html:108
+#: prayerlistapp/templates/core/settings.html:124
+msgid "Connect to"
+msgstr ""
 
 #: prayerlistapp/templates/index.html:6 prayerlistapp/templates/layout.html:40
 #: prayerlistapp/templates/layout.html:108
 msgid "Prayer list"
 msgstr "Lista de rugăciune"
 
-#: prayerlistapp/templates/index.html:7 prayerlistapp/templates/layout.html:8
+#: prayerlistapp/templates/index.html:8
+msgid ""
+"The end of all things is near; therefore, be of sound judgment and sober "
+"spirit for the purpose of prayer. 1 Peter 4:7"
+msgstr ""
+
+#: prayerlistapp/templates/index.html:11 prayerlistapp/templates/layout.html:8
 msgid "Maintain a list of prayer requests and use it to pray daily"
 msgstr ""
 
-#: prayerlistapp/templates/index.html:8
+#: prayerlistapp/templates/index.html:12
 msgid "Learn more"
 msgstr "Află mai multe"
 
@@ -140,9 +198,21 @@ msgstr "Ieși"
 msgid "Sign in"
 msgstr ""
 
-#: prayerlistapp/templates/layout.html:63
-msgid "Settings"
-msgstr "Setări"
+#: prayerlistapp/templates/registration/login.html:5
+#: prayerlistapp/templates/registration/login.html:9
+msgid "Login"
+msgstr ""
+
+#: prayerlistapp/templates/registration/login.html:12
+msgid "OR"
+msgstr ""
+
+#: prayerlistapp/templates/registration/login.html:13
+#: prayerlistapp/templates/registration/login.html:14
+#: prayerlistapp/templates/registration/login.html:15
+#: prayerlistapp/templates/registration/login.html:16
+msgid "Login with"
+msgstr ""
 
 #: prayerlistapp/templates/today.html:8
 #, fuzzy

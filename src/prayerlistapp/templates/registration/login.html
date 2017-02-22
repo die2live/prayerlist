@@ -1,16 +1,17 @@
 {% extends 'layout.html' %}
+{% load i18n %}
 
 {% block content %}
-  <h2>Login</h2>
+  <h2>{% trans 'Login' %}</h2>
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Login</button>
+    <button type="submit">{% trans 'Login' %}</button>
   </form>
   <br>
-  <p><strong>-- OR --</strong></p>
-  <a href="{% url 'social:begin' 'github' %}">Login with GitHub</a><br>
-  <a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a><br>
-  <a href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a><br>
-  <a href="{% url 'social:begin' 'twitter' %}">Login with Twitter</a><br>
+  <p><strong>-- {% trans 'OR' %} --</strong></p>
+  <a href="{% url 'social:begin' 'github' %}">{% trans 'Login with' %} GitHub</a><br>
+  <a href="{% url 'social:begin' 'google-oauth2' %}">{% trans 'Login with' %} Google</a><br>
+  <a href="{% url 'social:begin' 'facebook' %}">{% trans 'Login with' %} Facebook</a><br>
+  <a href="{% url 'social:begin' 'twitter' %}">{% trans 'Login with' %} Twitter</a><br>
 {% endblock %}
