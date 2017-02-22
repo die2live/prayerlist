@@ -98,15 +98,15 @@ msgstr "Молитвенная нужда была сохранена."
 
 #: prayerlistapp/templates/core/password.html:5
 msgid "Change Password"
-msgstr ""
+msgstr "Изменить пароль"
 
 #: prayerlistapp/templates/core/password.html:7
 msgid "You have not defined a password yet."
-msgstr ""
+msgstr "Для вашего пользователя не установлен пароль."
 
 #: prayerlistapp/templates/core/password.html:12
 msgid "Save changes"
-msgstr ""
+msgstr "Сохранить"
 
 #: prayerlistapp/templates/core/settings.html:8
 #: prayerlistapp/templates/layout.html:63
@@ -115,11 +115,11 @@ msgstr "Настройки"
 
 #: prayerlistapp/templates/core/settings.html:18
 msgid "Profile"
-msgstr ""
+msgstr "Профиль"
 
 #: prayerlistapp/templates/core/settings.html:19
 msgid "Authentication"
-msgstr ""
+msgstr "Аутентификация"
 
 #: prayerlistapp/templates/core/settings.html:57
 #: prayerlistapp/templates/create.html:36
@@ -136,7 +136,7 @@ msgstr "Отменить"
 #: prayerlistapp/templates/core/settings.html:97
 #: prayerlistapp/templates/core/settings.html:113
 msgid "Connected as"
-msgstr ""
+msgstr "Подключен как"
 
 #: prayerlistapp/templates/core/settings.html:69
 #: prayerlistapp/templates/core/settings.html:72
@@ -147,14 +147,14 @@ msgstr ""
 #: prayerlistapp/templates/core/settings.html:117
 #: prayerlistapp/templates/core/settings.html:120
 msgid "Disconnect from"
-msgstr ""
+msgstr "Удалить учетную запись"
 
 #: prayerlistapp/templates/core/settings.html:76
 #: prayerlistapp/templates/core/settings.html:92
 #: prayerlistapp/templates/core/settings.html:108
 #: prayerlistapp/templates/core/settings.html:124
 msgid "Connect to"
-msgstr ""
+msgstr "Добавить учетную запись"
 
 #: prayerlistapp/templates/index.html:6 prayerlistapp/templates/layout.html:40
 #: prayerlistapp/templates/layout.html:108
@@ -165,7 +165,8 @@ msgstr "Молитвенный список"
 msgid ""
 "The end of all things is near; therefore, be of sound judgment and sober "
 "spirit for the purpose of prayer. 1 Peter 4:7"
-msgstr ""
+msgstr "Впрочем близок всему конец.
+Итак будьте благоразумны и бодрствуйте в молитвах."
 
 #: prayerlistapp/templates/index.html:11 prayerlistapp/templates/layout.html:8
 msgid "Maintain a list of prayer requests and use it to pray daily"
@@ -202,22 +203,20 @@ msgstr "Войти"
 #: prayerlistapp/templates/registration/login.html:5
 #: prayerlistapp/templates/registration/login.html:9
 msgid "Login"
-msgstr ""
+msgstr "Войти"
 
 #: prayerlistapp/templates/registration/login.html:12
 msgid "OR"
-msgstr ""
+msgstr "ИЛИ"
 
 #: prayerlistapp/templates/registration/login.html:13
 #: prayerlistapp/templates/registration/login.html:14
 #: prayerlistapp/templates/registration/login.html:15
 #: prayerlistapp/templates/registration/login.html:16
 msgid "Login with"
-msgstr ""
+msgstr "Войти с"
 
 #: prayerlistapp/templates/today.html:8
-#, fuzzy
-#| msgid "Your prayer request was updated."
 msgid "Your prayer requests for today"
 msgstr "Молитвенные нужды на сегодня"
 
