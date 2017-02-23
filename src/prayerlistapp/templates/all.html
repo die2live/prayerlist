@@ -4,7 +4,8 @@
 {% block content %}
   <!-- Example row of columns -->
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
       <h1>{% trans 'Manage your prayer requests' %}</h1>
       <table id="prs_table" class="display">
         <thead>
@@ -31,7 +32,8 @@
       </table>      
       <p><a class="btn btn-primary" href="/edit/" role="button">{% trans 'Add prayer request' %} &raquo;</a></p>
       {% csrf_token %}
-    </div>        
+    </div>
+    <div class="col-md-1"></div>
   </div>
 
 {% endblock %}

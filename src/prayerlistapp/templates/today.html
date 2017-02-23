@@ -4,23 +4,51 @@
 {% block content %}
   <!-- Example row of columns -->
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
       <h1>{% trans 'Your prayer requests for today' %}</h1>
-      <div class="grid">        
-        {% for pr in prayer_requests %}
-          <div class="grid-item pr small bg-info">
-            <p class="pr-title text-capitalize"><strong>{{ pr.title }}</strong></p>
-            <p class="pr-description">{{ pr.description | safe }}</p>
-            <div class="pr-mng">
-              <a class="btn btn-default btn-xs" href="/edit/{{ pr.id }}/" role="button">{% trans 'Edit' %}</a>
-              <button type="button" class="btn btn-default btn-xs deletebtn" data-id="{{ pr.id }}">{% trans 'Delete' %}</button>
-            </div>
-          </div>          
-        {% endfor %}        
-      </div>      
-      <p><a class="btn btn-primary" href="/edit/" role="button">{% trans 'Add prayer request' %} &raquo;</a></p>
-      {% csrf_token %}
-    </div>        
+    </div>
+    <div class="col-md-1"></div>
   </div>
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-4">
+      {% for pr in prayer_requests %}
+        {% if forloop.counter0|divisibleby:2 %}
+        <div class="grid-item pr small bg-info">
+          <p class="pr-title text-capitalize"><strong>{{ pr.title }}</strong></p>
+          <p class="pr-description">{{ pr.description | safe }}</p>
+          <div class="pr-mng">
+            <a class="btn btn-default btn-xs" href="/edit/{{ pr.id }}/" role="button">{% trans 'Edit' %}</a>
+            <button type="button" class="btn btn-default btn-xs deletebtn" data-id="{{ pr.id }}">{% trans 'Delete' %}</button>
+          </div>
+        </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <div class="col-md-4">
+      {% for pr in prayer_requests %}
+        {% if not forloop.counter0|divisibleby:2 %}
+        <div class="grid-item pr small bg-info">
+          <p class="pr-title text-capitalize"><strong>{{ pr.title }}</strong></p>
+          <p class="pr-description">{{ pr.description | safe }}</p>
+          <div class="pr-mng">
+            <a class="btn btn-default btn-xs" href="/edit/{{ pr.id }}/" role="button">{% trans 'Edit' %}</a>
+            <button type="button" class="btn btn-default btn-xs deletebtn" data-id="{{ pr.id }}">{% trans 'Delete' %}</button>
+          </div>
+        </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <p><a class="btn btn-primary" href="/edit/" role="button">{% trans 'Add prayer request' %} &raquo;</a></p>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+  {% csrf_token %}
 
 {% endblock %}
