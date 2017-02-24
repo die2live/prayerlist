@@ -24,9 +24,13 @@ class PrayerRequest(models.Model):
 	is_public = models.BooleanField(default=False)
 	show_date = models.DateField(null=True, blank=True)
 	created_by = models.ForeignKey(Profile, editable=False)
+	show_count = models.BigIntegerField(null=False, default=0)
 
 	def __str__(self):
-		return self.title
+		return '%s - user_%s - %s' % (self.title, self.created_by.id, self.show_count)
+
+	class Meta:
+		ordering = ['show_count', '-created_date']
 
 
 class UserGroup(models.Model):

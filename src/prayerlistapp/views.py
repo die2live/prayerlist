@@ -4,7 +4,6 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib import messages
 from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
-from django.template import Template, Context
 from django.http import HttpResponse
 from django.utils.translation import ugettext as _
 from django.views.decorators.http import require_POST
@@ -18,7 +17,12 @@ def index(request):
     prs = models.PrayerRequest.objects.filter(                    
                     Q(is_public=True),
                     Q(show_date=datetime.today()) | 
-                    Q(show_date=None)).order_by('-created_date')[:6]
+                    Q(show_date=None))[:3]
+
+    for pr in prs:
+        pr.show_count += 1
+        pr.save()
+
     return render(
         request, 
         'index.html',
@@ -50,7 +54,7 @@ def all(request):
 
 @login_required
 def today(request):     
-    prs = models.PrayerRequest.objects.filter(Q(created_by=request.user.profile), Q(show_date=datetime.today()) | Q(show_date=None)).order_by('-created_date')[:request.user.profile.num_normal_pr]
+    prs = models.PrayerRequest.objects.filter(Q(created_by=request.user.profile), Q(show_date=datetime.today()) | Q(show_date=None))[:request.user.profile.num_normal_pr]
     return render(
         request, 
         'today.html',
