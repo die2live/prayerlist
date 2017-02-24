@@ -222,7 +222,7 @@ msgstr "Intră cu contul"
 
 #: prayerlistapp/templates/today.html:8
 msgid "Your prayer requests for today"
-msgstr "Nevoile de rugăciune pentru azi"
+msgstr "Lista de rugăciune pentru azi"
 
 #: prayerlistapp/views.py:80
 msgid "Your prayer request was updated."
