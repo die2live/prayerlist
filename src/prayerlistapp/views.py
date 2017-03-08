@@ -89,7 +89,7 @@ def edit(request, pk):
             new_pr = new_form.save(commit=False)            
             new_pr.created_by = request.user.profile
             new_pr.save()                       
-            messages.add_message(request, messages.INFO, _('Your prayer request was saved.'))              
+            messages.add_message(request, messages.INFO, _('Your prayer request was saved.'))
         return redirect('/all/')
             
 
@@ -100,6 +100,13 @@ def delete(request, id):
     pr = get_object_or_404(models.PrayerRequest, pk=id)
     pr.delete()
     messages.add_message(request, messages.INFO, _('Your prayer request was deleted.'))
+    return HttpResponse('OK')
+
+@login_required
+@require_POST
+def mark_as_read(request, id):
+    pr = get_object_or_404(models.PrayerRequest, pk=id)
+    pr.toggle_read()
     return HttpResponse('OK')
 
 @login_required

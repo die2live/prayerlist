@@ -5,16 +5,12 @@ $(document).ready(function () {
 		dateFormat: 'yy-mm-dd',
 	});
 
-	$('.grid').masonry({    
-		itemSelector: '.grid-item',		
-		percentPosition: true        
-	});
-
-	$('.deletebtn').click(function() {
+	$('.deletebtn').click(function(event) {
+	    event.preventDefault();
 		if(confirm('Are you sure?')) {
-			var id = $(this).data('id');
+		    url = $(this).attr('href');
 			$.post(
-				'/delete/' + id + '/', 
+				url,
 				{'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()},
 				function(data) {
 					window.location = '/all/';
@@ -24,6 +20,18 @@ $(document).ready(function () {
 
 	$('#prs_table').DataTable({
 		'order': [[2, 'desc']]
-	});      
+	});
+
+	$('.togglereadbtn').click(function(event) {
+	    event.preventDefault();
+	    url = $(this).attr('href');
+	    $.post(
+            url,
+            {'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()},
+            function(data) {
+                window.location = '/today/';
+            }
+        );
+	});
 
 });
