@@ -6,21 +6,16 @@
   <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
-      <h1>{% trans 'Your prayer requests for today' %}</h1>
+      <h1 class="text-center">{% trans 'Your prayer requests for today' %}</h1>
     </div>
     <div class="col-md-1"></div>
-  </div>
-  <div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
-      <p><a class="btn btn-primary" href="/edit/" role="button">{% trans 'Add prayer request' %} &raquo;</a></p>
-    </div>
-    <div class="col-md-2"></div>
   </div>
 
   <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8">
+      <p class="text-center"><a class="btn btn-primary" href="/edit/" role="button">{% trans 'Add prayer request' %}</a></p>
+
       <ul class="timeline">
         {% for pr in prayer_requests %}
           <li>
