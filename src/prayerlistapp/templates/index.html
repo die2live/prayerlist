@@ -7,8 +7,7 @@
   <blockquote>
     <p>{% trans 'The end of all things is near; therefore, be of sound judgment and sober spirit for the purpose of prayer.' %}</p>
     <footer>{% trans 'Apostle Peter in' %} <cite title="{% trans 'The first epistle of Peter, chapter 1, verse 7' %}">{% trans 'The first epistle of Peter, chapter 1, verse 7' %}</cite></footer>    
-  </blockquote>  
-  <p>{% trans 'Maintain a list of prayer requests and use it to pray daily' %}</p>  
+  </blockquote>
   <p><a class="btn btn-primary btn-lg" href="/about/" role="button">{% trans 'Learn more' %} &raquo;</a></p>
   
 {% endblock %}
@@ -17,15 +16,37 @@
   
   <div class="row">
     <div class="col-md-1"></div>
-    <div class="col-md-10">
-	  <div class="grid">        
+    <div class="col-md-5">
+      <ul class="timeline text-lowercase">
         {% for pr in prayer_requests %}
-          <div class="grid-item pr small bg-info">
-            <p class="pr-title text-capitalize"><strong>{{ pr.title }}</strong></p>
-            <p class="pr-description">{{ pr.description | safe }}</p>
-          </div>
+        {% if forloop.counter0|divisibleby:2 %}
+          <li>
+            <div class="bubble-container">
+              <div class="bubble {% if pr.is_read %} read {% endif %}">
+                <p><strong>{{ pr.title }}</strong></p><br/>
+                {{ pr.description | safe }}
+              </div>
+            </div>
+          </li>
+        {% endif %}
         {% endfor %}
-      </div>
+      </ul>
+    </div>
+    <div class="col-md-5">
+	  <ul class="timeline text-lowercase">
+        {% for pr in prayer_requests %}
+        {% if not forloop.counter0|divisibleby:2 %}
+          <li>
+            <div class="bubble-container">
+              <div class="bubble {% if pr.is_read %} read {% endif %}">
+                <p><strong>{{ pr.title }}</strong></p><br/>
+                {{ pr.description | safe }}
+              </div>
+            </div>
+          </li>
+        {% endif %}
+        {% endfor %}
+      </ul>
     </div>
     <div class="col-md-1"></div>
   </div>

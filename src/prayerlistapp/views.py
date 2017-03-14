@@ -17,7 +17,7 @@ def index(request):
     prs = models.PrayerRequest.objects.filter(                    
                     Q(is_public=True),
                     Q(show_date=datetime.today()) | 
-                    Q(show_date=None))[:3]
+                    Q(show_date=None))[:10]
 
     for pr in prs:
         pr.show_count += 1
