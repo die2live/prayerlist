@@ -65,20 +65,19 @@
           </ul>
           {% endif %}
 
-          <form class="nav navbar-right navbar-form" action="{% url 'set_language' %}" method="POST">
+          <form class="nav navbar-right navbar-form form-lang" action="{% url 'set_language' %}" method="POST">
             {% csrf_token %}
             <input type="hidden" name="next" value="{{ redirect_to }}" />
-            <select name="language" class="form-control">
-              {% get_current_language as LANGUAGE_CODE %}              
+            <input type="hidden" name="language"/>
+
+            <ul class="nav navbar-nav navbar-right">
+              {% get_current_language as LANGUAGE_CODE %}
               {% get_available_languages as LANGUAGES %}
               {% get_language_info_list for LANGUAGES as languages %}
               {% for language in languages %}
-                <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected="selected"{% endif %}>
-                  {{ language.name_local }} ({{ language.code }})
-                </option>
+                <li><button class="btn btn-default btn-lang" type="button">{{ language.code }}</button></li>
               {% endfor %}
-            </select>
-            <input type="submit" value="Go" />
+            </ul>
           </form>                   
         </div><!--/.nav-collapse -->
       </div>

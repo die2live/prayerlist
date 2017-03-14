@@ -1,4 +1,9 @@
 $(document).ready(function () {
+    $('.btn-lang').click(function(event) {
+        $('input[name=language]').val($(this).text());
+        $('.form-lang').submit();
+    });
+
 	tinymce.init({selector:'textarea'});
 
 	$('.datepicker').datepicker({
