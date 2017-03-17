@@ -23,7 +23,7 @@
               <td>
                 <div class="pr-mng">
                   <a class="btn btn-default btn-xs" href="/edit/{{ pr.id }}/" role="button">{% trans 'Edit' %}</a>
-                  <button type="button" class="btn btn-default btn-xs deletebtn" data-id="{{ pr.id }}">{% trans 'Delete' %}</button>
+                  <a class="btn btn-default btn-xs deletebtn" href="/delete/{{ pr.id }}/">{% trans 'Delete' %}</a>
                 </div>
               </td>
             </tr>            
