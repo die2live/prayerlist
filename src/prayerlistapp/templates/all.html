@@ -18,8 +18,8 @@
           {% for pr in prayer_requests %}
             <tr>
               <td>{{ pr.title }}</td>              
-              <td>{{ pr.is_public }}</td>              
-              <td>{{ pr.show_date }}</td>
+              <td>{{ pr.is_public|yesno }}</td>
+              <td>{{ pr.show_date|default_if_none:"" }}</td>
               <td>
                 <div class="pr-mng">
                   <a class="btn btn-default btn-xs" href="/edit/{{ pr.id }}/" role="button">{% trans 'Edit' %}</a>
