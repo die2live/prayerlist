@@ -1,6 +1,10 @@
+amqp==2.1.4
 appdirs==1.4.0
+billiard==3.5.0.2
+celery==4.0.2
 defusedxml==0.4.1
 Django==1.10.5
+kombu==4.0.2
 oauthlib==2.0.1
 packaging==16.8
 PyJWT==1.4.2
@@ -8,8 +12,10 @@ pyparsing==2.1.10
 python-decouple==3.0
 python-social-auth==0.3.3
 python3-openid==3.0.10
+pytz==2016.10
 requests==2.13.0
 requests-oauthlib==0.7.0
 six==1.10.0
 social-auth-app-django==1.0.0
 social-auth-core==1.0.1
+vine==1.1.3
