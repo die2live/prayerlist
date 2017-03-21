@@ -9,14 +9,13 @@ from django.utils.translation import ugettext as _
 from django.views.decorators.http import require_POST
 from datetime import datetime
 
-from . import models
-from . import forms
-from .tasks import send_daily_email_task
+from .models import PrayerRequest
+from .forms import EditPrayerRequestForm, EditUserForm, EditProfileForm
 from social.apps.django_app.default.models import UserSocialAuth
 
 
 def index(request):       
-    prs = models.PrayerRequest.objects.filter(                    
+    prs = PrayerRequest.objects.filter(
                     Q(is_public=True),
                     Q(show_date=datetime.today()) | 
                     Q(show_date=None))[:10]
@@ -44,7 +43,7 @@ def about(request):
 
 @login_required
 def all(request):	
-    prs = models.PrayerRequest.objects.filter(created_by=request.user.profile)
+    prs = PrayerRequest.objects.filter(created_by=request.user.profile)
     return render(
 		request, 
 		'all.html',
@@ -56,7 +55,7 @@ def all(request):
 
 @login_required
 def today(request):     
-    prs = models.PrayerRequest.objects.filter(Q(created_by=request.user.profile), Q(show_date=datetime.today()) | Q(show_date=None))[:request.user.profile.num_normal_pr]
+    prs = PrayerRequest.objects.filter(Q(created_by=request.user.profile), Q(show_date=datetime.today()) | Q(show_date=None))[:request.user.profile.num_normal_pr]
     return render(
         request, 
         'today.html',
@@ -71,23 +70,23 @@ def edit(request, pk):
     id = pk
     if request.method == 'GET':                
         if id:            
-            pr = get_object_or_404(models.PrayerRequest, pk=id)
-            form = forms.EditPrayerRequestForm(instance=pr)
+            pr = get_object_or_404(PrayerRequest, pk=id)
+            form = EditPrayerRequestForm(instance=pr)
         else:
-            form = forms.EditPrayerRequestForm()
+            form = EditPrayerRequestForm()
         return render(request, 'create.html', {'form': form, 'pr_id': id})
     elif request.method == 'POST':       
         id = pk if pk else request.POST['id']         
         if id:
-            pr = get_object_or_404(models.PrayerRequest, pk=id)            
-            form = forms.EditPrayerRequestForm(request.POST, instance=pr)                    
+            pr = get_object_or_404(PrayerRequest, pk=id)
+            form = EditPrayerRequestForm(request.POST, instance=pr)
             if form.is_valid():                
                 form.save()
                 messages.add_message(request, messages.INFO, _('Your prayer request was updated.'))
             else:
                 return render(request, 'create.html', {'form': form, 'pr_id': id})               
         else:   
-            new_form = forms.EditPrayerRequestForm(request.POST)
+            new_form = EditPrayerRequestForm(request.POST)
             new_pr = new_form.save(commit=False)            
             new_pr.created_by = request.user.profile
             new_pr.save()
@@ -100,7 +99,7 @@ def edit(request, pk):
 @login_required
 @require_POST
 def delete(request, id):
-    pr = get_object_or_404(models.PrayerRequest, pk=id)
+    pr = get_object_or_404(PrayerRequest, pk=id)
     pr.delete()
     messages.add_message(request, messages.INFO, _('Your prayer request was deleted.'))
     return HttpResponse('OK')
@@ -108,15 +107,15 @@ def delete(request, id):
 @login_required
 @require_POST
 def mark_as_read(request, id):
-    pr = get_object_or_404(models.PrayerRequest, pk=id)
+    pr = get_object_or_404(PrayerRequest, pk=id)
     pr.toggle_read()
     return HttpResponse('OK')
 
 @login_required
 def settings(request):
     if request.method == 'POST':
-        user_form = forms.EditUserForm(request.POST, instance=request.user)
-        profile_form = forms.EditProfileForm(request.POST, instance=request.user.profile)
+        user_form = EditUserForm(request.POST, instance=request.user)
+        profile_form = EditProfileForm(request.POST, instance=request.user.profile)
 
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
@@ -126,8 +125,8 @@ def settings(request):
         else:
             messages.error(request, _('Please correct the error below.'))
     else:
-        user_form = forms.EditUserForm(instance=request.user)
-        profile_form = forms.EditProfileForm(instance=request.user.profile)
+        user_form = EditUserForm(instance=request.user)
+        profile_form = EditProfileForm(instance=request.user.profile)
 
         user = request.user
 
