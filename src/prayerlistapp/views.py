@@ -11,7 +11,9 @@ from datetime import datetime
 
 from . import models
 from . import forms
+from .tasks import send_daily_email_task
 from social.apps.django_app.default.models import UserSocialAuth
+
 
 def index(request):       
     prs = models.PrayerRequest.objects.filter(                    
@@ -88,7 +90,10 @@ def edit(request, pk):
             new_form = forms.EditPrayerRequestForm(request.POST)
             new_pr = new_form.save(commit=False)            
             new_pr.created_by = request.user.profile
-            new_pr.save()                       
+            new_pr.save()
+
+            send_daily_email_task.delay(request.user.email, new_pr.title)
+
             messages.add_message(request, messages.INFO, _('Your prayer request was saved.'))
         return redirect('/all/')
             
