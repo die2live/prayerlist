@@ -92,8 +92,6 @@ def edit(request, pk):
             new_pr.created_by = request.user.profile
             new_pr.save()
 
-            send_daily_email_task.delay(request.user.email, new_pr.title)
-
             messages.add_message(request, messages.INFO, _('Your prayer request was saved.'))
         return redirect('/all/')
             

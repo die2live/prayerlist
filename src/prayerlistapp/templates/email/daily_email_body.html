@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .bubble,.bubble-container{display:inline-block;position:relative}.bubble,.bubble-container,.first{position:relative}*{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}body{font-family:Quicksand;font-size:14px;background-color:#ededed}.bubble{width:100%;line-height:1.4em;padding:20px;background-color:#ecf0f1;-webkit-border-radius:8px;-moz-border-radius:8px;-ms-border-radius:8px;-o-border-radius:8px;border-radius:8px;text-align:left}.bubble:hover>.over-bubble{opacity:1}.bubble-container{width:90%;padding-left:20px;vertical-align:top}.first,.timeline{max-width:560px;display:block}.timeline{margin:auto auto 2em;background-color:#dde1e2;padding-bottom:2em;-webkit-box-shadow:#bdc3c7 0 5px 5px;-moz-box-shadow:#bdc3c7 0 5px 5px;box-shadow:#bdc3c7 0 5px 5px;-moz-border-radius-bottomleft:8px;-webkit-border-bottom-left-radius:8px;border-bottom-left-radius:8px;-moz-border-radius-bottomright:8px;-webkit-border-bottom-right-radius:8px;border-bottom-right-radius:8px}.timeline li{list-style:none;padding:1em 0}.timeline li:nth-child(even){background-color:#d3d7d8}.first{margin:1em auto auto;background-color:#3498db;text-shadow:#2084c7 1px 1px 0;padding:1em 0;color:#fff;text-align:center;font-family:Lato;font-size:1.6em;-moz-border-radius-topleft:8px;-webkit-border-top-left-radius:8px;border-top-left-radius:8px;-moz-border-radius-topright:8px;-webkit-border-top-right-radius:8px;border-top-right-radius:8px}h3{font-weight:700;font-family:Lato;display:inline-block;margin-bottom:.2em}
+    </style>
+</head>
+<body>
+  <span class="first">Daily Prayer List - {% now 'SHORT_DATE_FORMAT' %}</span>
+  <ul class="timeline">
+    {% for pr in prayer_requests %}
+    <li>
+      <div class="bubble-container">
+        <div class="bubble">
+          <h3>{{ pr.title }}</h3> <br/>
+          {{ pr.description | safe }}
+        </div>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+</body>
+</html>
