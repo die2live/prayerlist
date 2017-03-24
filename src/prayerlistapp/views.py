@@ -11,6 +11,8 @@ from datetime import datetime
 
 from .models import PrayerRequest
 from .forms import EditPrayerRequestForm, EditUserForm, EditProfileForm
+from .tasks import send_test_email_task
+
 from social.apps.django_app.default.models import UserSocialAuth
 
 
@@ -33,7 +35,11 @@ def index(request):
     )
 
 
-def about(request):       
+def test_celery(request):
+    return HttpResponse(send_test_email_task.delay())
+
+def about(request):
+    send_test_email_task.delay()
     return render(
         request, 
         'about.html',

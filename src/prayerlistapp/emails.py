@@ -17,3 +17,12 @@ def send_daily_email(email, prayer_requests):
         fail_silently=False,
         html_message=email_body
     )
+
+def send_test_email():
+    return send_mail(
+        'Test celery',                  # subject
+        'Test celery body',             # message
+        settings.EMAIL_HOST_USER,       # from_email
+        [settings.EMAIL_HOST_USER],     # recipient_list
+        fail_silently=False
+    )

@@ -6,13 +6,13 @@ from datetime import datetime
 from itertools import groupby
 
 from .models import PrayerRequest
-from .emails import send_daily_email, send_periodic_email
+from .emails import send_daily_email, send_test_email
 
 logger = get_task_logger(__name__)
 
 #@task(name='send_daily_email_task')
 #@periodic_task(run_every=(crontab(minute='*/1')), name='periodic task', ignore_result=True)
-@periodic_task(run_every=(crontab(minute=0, hour=2)), name='periodic task', ignore_result=True)
+@periodic_task(run_every=(crontab(minute=0, hour=1)), name='periodic task', ignore_result=True)
 def send_daily_email_task():
     '''
     Send an email with prayer needs specified for current date
@@ -26,3 +26,8 @@ def send_daily_email_task():
     for key, values in groupby(pr_for_today, key=lambda row: row.created_by.user.email):
         logger.info('send daily email for %s' % key)
         send_daily_email(key, values)
+
+@task(name='send_test_email_task')
+def send_test_email_task():
+    logger.info('send TEST email')
+    return send_test_email()

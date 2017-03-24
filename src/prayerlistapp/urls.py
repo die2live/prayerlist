@@ -11,5 +11,6 @@ urlpatterns = [
     url(r'^markread/(?P<id>\d*)(\/*)$', views.mark_as_read, name='mark_as_read'),
     url(r'^about/$', views.about, name='about'),	
     url(r'^settings/$', views.settings, name='settings'),
-    url(r'^settings/password/$', views.password, name='password'),    
+    url(r'^settings/password/$', views.password, name='password'),
+    url(r'^celery/$', views.test_celery, name='celery'),
 ]
