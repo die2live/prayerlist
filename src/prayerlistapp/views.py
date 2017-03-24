@@ -36,6 +36,7 @@ def index(request):
 
 
 def test_celery(request):
+
     return HttpResponse(send_test_email_task.delay())
 
 def about(request):
